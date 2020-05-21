@@ -6,10 +6,9 @@ import androidx.annotation.Keep;
  * Created by HP on 03/07/2018.
  */
 
-@Keep
 public class Companymodel {
-    public String img1;
-    public String img2;
+    private String img1;
+    private String img2;
 
     public Companymodel() {
     }

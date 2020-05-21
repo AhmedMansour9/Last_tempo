@@ -186,7 +186,7 @@
     <string name="unblock">Un block</string>
     <string name="blockedhim">You blocked this person You cannot message him in this chat</string>
     <string name="blockedyou">This person is Not available for you</string>
-
+    <string name="invalidemailorpas">Invalid Email Or Password</string>
     <string-array name="types">
         <item>Present a service </item>
         <item>Request a service</item>

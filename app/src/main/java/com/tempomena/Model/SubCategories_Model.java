@@ -9,10 +9,10 @@ import com.tempomena.Activites.ProductList;
 @Keep
 public class SubCategories_Model {
 
-    public String cat_ar;
-    public String cat_en;
-    public String key;
-    public String sub_key;
+    private String cat_ar;
+    private String cat_en;
+    private String key;
+    private String sub_key;
    public SubCategories_Model(){
 
    }

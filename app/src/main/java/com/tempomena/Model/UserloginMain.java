@@ -3,14 +3,13 @@ package com.tempomena.Model;
 
 import androidx.annotation.Keep;
 
-@Keep
 public class UserloginMain
 {
 
-    public String username;
-    public String id;
-    public String token;
-    public String email;
+    private String username;
+    private String id;
+    private String token;
+    private String email;
 
     public UserloginMain() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)

@@ -7,30 +7,30 @@ import androidx.annotation.Keep;
  */
 
 
-@Keep
+
 public class Retrivedata {
-    public String img1;
-    public String img2;
-    public String img3;
-    public String img4;
-    public String name;
-    public String discrption;
-    public String govern;
-    public String discount;
-    public String phone;
-    public long cit_id;
-    public String date;
-    public String token;
-    public String key;
-    public Boolean Admin;
-    public  Boolean Statues;
-    public  String Social_id;
-    public  String Sub_id;
-    public String type_service;
-    public String currency;
-    public String sub_name;
-    public String cat_name;
-    public String user_name;
+    private String img1;
+    private String img2;
+    private String img3;
+    private String img4;
+    private String name;
+    private String discrption;
+    private String govern;
+    private String discount;
+    private String phone;
+    private long cit_id;
+    private String date;
+    private String token;
+    private String key;
+    private Boolean Admin;
+    private  Boolean Statues;
+    private  String Social_id;
+    private  String Sub_id;
+    private String type_service;
+    private String currency;
+    private String sub_name;
+    private String cat_name;
+    private String user_name;
 
     public Retrivedata(){}
 

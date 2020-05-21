@@ -5,7 +5,6 @@ import androidx.annotation.Keep;
 /**
  * Created by kunda on 10/3/2017.
  */
-@Keep
 public class Order {
     private String ProductId;
     private String ProductName;

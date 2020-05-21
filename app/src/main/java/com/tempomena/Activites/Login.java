@@ -151,6 +151,7 @@ public class Login extends AppCompatActivity {
                        progressBarLogin.setVisibility(View.GONE);
                        if (!task.isSuccessful()) {
 
+                           Toast.makeText(Login.this, ""+getResources().getString(R.string.invalidemailorpas), Toast.LENGTH_SHORT).show();
 
                        } else {
                            mAuth = FirebaseAuth.getInstance();

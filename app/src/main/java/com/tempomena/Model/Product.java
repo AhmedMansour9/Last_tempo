@@ -7,9 +7,8 @@ import androidx.annotation.Keep;
  */
 
 
-@Keep
 public class Product {
-    public String Name,Image,Description,Price,Discount,CategoryId;
+    private String Name,Image,Description,Price,Discount,CategoryId;
 
     public Product() {
     }

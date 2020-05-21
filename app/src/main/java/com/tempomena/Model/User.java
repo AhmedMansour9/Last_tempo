@@ -8,11 +8,10 @@ import androidx.annotation.Keep;
 
 
 
-@Keep
 public class User {
-    public String Name;
-    public String Password;
-    public String Phone;
+    private String Name;
+    private String Password;
+    private String Phone;
 
     public User() {
     }

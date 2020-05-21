@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 
 import com.tempomena.Activites.Home;
 
-@Keep
 public class Cities_Response {
 
     private String id;

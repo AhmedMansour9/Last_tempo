@@ -9,11 +9,10 @@ import androidx.annotation.NonNull;
 /**
  * Created by kunda on 10/2/2017.
  */
-@Keep
 public class Category {
-    public String cat_en;
-    public String cat_ar;
-    public String key;
+    private String cat_en;
+    private String cat_ar;
+    private String key;
 
     public Category() {
 

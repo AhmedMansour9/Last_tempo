@@ -3,11 +3,11 @@ package com.tempomena.Model;
 
 import androidx.annotation.Keep;
 
-@Keep
+
 public class meesage {
 
     public  meesage (){}
-    public String Msg,from,to,date,from_token,to_token,recieved_from,send_to;
+    private String Msg,from,to,date,from_token,to_token,recieved_from,send_to;
 
 
     public meesage(String msg, String from, String to, String date, String from_token, String to_token, String recieved_from, String send_to) {

@@ -153,6 +153,7 @@
     <string name="unblock">فك الحظر</string>
     <string name="blockedhim">لقد قمت بحظر هذا الشخص لا يمكنك مراسلته في هذة الدردشة</string>
     <string name="blockedyou">هذا الشخص غير متاح لك</string>
+    <string name="invalidemailorpas">البريد الإلكتروني أو كلمة السر خاطئة</string>
 
     <string-array name="types">
         <item>تقديم خدمة </item>
