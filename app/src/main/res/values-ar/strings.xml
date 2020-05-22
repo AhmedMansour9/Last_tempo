@@ -154,6 +154,9 @@
     <string name="blockedhim">لقد قمت بحظر هذا الشخص لا يمكنك مراسلته في هذة الدردشة</string>
     <string name="blockedyou">هذا الشخص غير متاح لك</string>
     <string name="invalidemailorpas">البريد الإلكتروني أو كلمة السر خاطئة</string>
+    <string name="firstname">الاسم الاول</string>
+    <string name="lastname">الاسم الاخير</string>
+    <string name="uniqueusername">أسم المستخدم مسجل مسبقا</string>
 
     <string-array name="types">
         <item>تقديم خدمة </item>

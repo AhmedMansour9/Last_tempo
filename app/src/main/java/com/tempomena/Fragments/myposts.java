@@ -728,6 +728,8 @@ public class myposts extends Fragment implements itemViewinterface, SwipeRefresh
             inty.putExtra("date", Adapteritems.array.get(poistion).getDate());
             inty.putExtra("govern", Adapteritems.array.get(poistion).getGovern());
             inty.putExtra("cu", Adapteritems.array.get(poistion).getCurrency());
+            inty.putExtra("social", Adapteritems.array.get(poistion).getSocial_id());
+            inty.putExtra("user_name", Adapteritems.array.get(poistion).getUser_name());
 
             startActivity(inty);
     }

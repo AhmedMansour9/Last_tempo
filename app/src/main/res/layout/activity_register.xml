@@ -103,7 +103,40 @@
                           android:weightSum="5"
                           android:background="#fff"
                           android:layout_height="match_parent">
-
+                          <EditText
+                              android:layout_width="match_parent"
+                              android:layout_height="@dimen/_45sdp"
+                              android:hint="@string/firstname"
+                              android:textColor="#a2a2a2"
+                              android:textColorHint="#a2a2a2"
+                              android:background="@null"
+                              android:textSize="@dimen/_12sdp"
+                              android:backgroundTint="#e5e5e5"
+                              android:paddingEnd="@dimen/_10sdp"
+                              android:paddingStart="@dimen/_10sdp"
+                              android:id="@+id/E_FirstNameCompany"
+                              />
+                          <View
+                              android:layout_width="match_parent"
+                              android:layout_height="@dimen/_1sdp"
+                              android:background="#e5e5e5"/>
+                          <EditText
+                              android:layout_width="match_parent"
+                              android:layout_height="@dimen/_45sdp"
+                              android:hint="@string/lastname"
+                              android:textColor="#a2a2a2"
+                              android:textColorHint="#a2a2a2"
+                              android:background="@null"
+                              android:textSize="@dimen/_12sdp"
+                              android:backgroundTint="#e5e5e5"
+                              android:paddingEnd="@dimen/_10sdp"
+                              android:paddingStart="@dimen/_10sdp"
+                              android:id="@+id/E_LastNameCompany"
+                              />
+                          <View
+                              android:layout_width="match_parent"
+                              android:layout_height="@dimen/_1sdp"
+                              android:background="#e5e5e5"/>
                           <EditText
                               android:layout_width="match_parent"
                               android:layout_height="@dimen/_45sdp"
@@ -228,9 +261,43 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:orientation="vertical"
-                        android:weightSum="5"
                         android:background="#fff"
                         android:layout_height="match_parent">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_45sdp"
+                            android:hint="@string/firstname"
+                            android:textColor="#a2a2a2"
+                            android:textColorHint="#a2a2a2"
+                            android:background="@null"
+                            android:textSize="@dimen/_12sdp"
+                            android:backgroundTint="#e5e5e5"
+                            android:paddingEnd="@dimen/_10sdp"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:id="@+id/E_FirstName"
+                            />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="#e5e5e5"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_45sdp"
+                            android:hint="@string/lastname"
+                            android:textColor="#a2a2a2"
+                            android:textColorHint="#a2a2a2"
+                            android:background="@null"
+                            android:textSize="@dimen/_12sdp"
+                            android:backgroundTint="#e5e5e5"
+                            android:paddingEnd="@dimen/_10sdp"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:id="@+id/E_LastName"
+                            />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="#e5e5e5"/>
 
                         <EditText
                             android:layout_width="match_parent"

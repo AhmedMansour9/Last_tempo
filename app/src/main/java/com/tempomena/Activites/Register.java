@@ -16,8 +16,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.tempomena.R;
 import com.tempomena.tokenid.SharedPrefManager;
 
@@ -30,13 +33,13 @@ import androidx.cardview.widget.CardView;
 import static com.google.firebase.auth.FirebaseAuth.getInstance;
 
 public class Register extends AppCompatActivity {
-    EditText E_FullName,E_Years,E_Major,E_Location,E_CompanyName,E_Phone,E_PhoneCompany,E_PasswordCompany,E_EmailCompany,E_Email,E_Password,E_FullNameCompany,E_Company;
+    EditText E_FirstName,E_LastName,E_LastNameCompany,E_FirstNameCompany,E_FullName,E_Years,E_Major,E_Location,E_CompanyName,E_Phone,E_PhoneCompany,E_PasswordCompany,E_EmailCompany,E_Email,E_Password,E_FullNameCompany,E_Company;
     TextView T_Company,T_Indvidual;
     FirebaseAuth auth;
     private Button Btn_Register;
     private ProgressBar progressBarRegister;
     String username,Type;
-
+    Boolean UserNameStatus;
     CardView card_view_Indvidual,card_view_company;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,52 +58,40 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                if(Type.equals("company")){
-                   if (!ValidateFullName_Company()||!ValidateName_Company()
+                   if (!ValidateFirstNameCompany()||!ValidateLastNameCompany()||!ValidateFullName_Company()||!ValidateName_Company()
                            ||!ValidatePhone_Company()
                            ||!ValidateEmail_Company()
                    ){
                    } else{
                        username = E_FullNameCompany.getText().toString();
-                       String  pas = E_PasswordCompany.getText().toString();
-                       String Emaail = E_EmailCompany.getText().toString();
+                       final String  pas = E_PasswordCompany.getText().toString();
+                       final String Emaail = E_EmailCompany.getText().toString();
                        progressBarRegister.setVisibility(View.VISIBLE);
-                       auth.createUserWithEmailAndPassword(Emaail,pas).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
-                           @Override
-                           public void onComplete(@NonNull Task<AuthResult> task) {
-                               progressBarRegister.setVisibility(View.GONE);
-                               if (!task.isSuccessful()) {
-                                   Toast.makeText(Register.this, getResources().getString(R.string.alreadyuser) ,
-                                           Toast.LENGTH_SHORT).show();
-                               } else {
-                                   String token= SharedPrefManager.getInstance(Register.this).getDeviceToken();
+                       final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users");
 
-                                   DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users");
-                                   FirebaseUser user = getInstance().getCurrentUser();
-                                   HashMap<String,String> hashMap=new HashMap<>();
-                                   hashMap.put("username",E_FullNameCompany.getText().toString());
-                                   hashMap.put("c_name",E_Company.getText().toString());
-                                   hashMap.put("phone",E_PhoneCompany.getText().toString());
-                                   hashMap.put("email",E_EmailCompany.getText().toString());
-                                   hashMap.put("token",token);
-                                   hashMap.put("id",user.getUid());
-                                   databaseReference.push().setValue(hashMap);
-                                   SharedPrefManager.getInstance(getBaseContext()).saveMyName(E_FullNameCompany.getText().toString());
-                                   SharedPrefManager.getInstance(getBaseContext()).saveSocialId(user.getUid());
-//                                      user.sendEmailVerification();
-//                                      Toast.makeText(MainActivity.this,
-//                                              getResources().getString(R.string.verfiymail) + user.getEmail(),
-//                                              Toast.LENGTH_SHORT).show();
-                                   auth.getInstance().signOut();
-                                   Intent intent=new Intent(Register.this,Login.class);
-                                   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                   startActivity(intent);
-                                   finish();
+                       databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                           @Override
+                           public void onDataChange(DataSnapshot dataSnapshot) {
+                               if(dataSnapshot.exists()) {
+                                   for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                       if (dataSnapshot1.exists()) {
+                                           progressBarRegister.setVisibility(View.GONE);
+                                           Toast.makeText(Register.this, "" + getResources().getString(R.string.uniqueusername), Toast.LENGTH_SHORT).show();
+                                       }
+                                   }
+                               }else {
+                                   RegisterCompany(Emaail,pas);
                                }
+                           }
+
+                           @Override
+                           public void onCancelled(DatabaseError databaseError) {
+
                            }
                        });
                    }
                }else {
-                   if (!ValidateUsername()||!ValidateMajor()||!ValidateYears()||!ValidateLocation()
+                   if (!ValidateFirstName()||!ValidateLastName()||!ValidateUsername()|| !ValidateMajor()||!ValidateYears()||!ValidateLocation()
                            ||!ValidateCompanyName()
                            ||!ValidatePhone()
                            ||!ValidateEmail()
@@ -108,46 +99,33 @@ public class Register extends AppCompatActivity {
                    ){
                    } else{
                        username = E_FullName.getText().toString();
-                       String  pas = E_Password.getText().toString();
-                       String Emaail = E_Email.getText().toString();
+                       final String  pas = E_Password.getText().toString();
+                       final String Emaail = E_Email.getText().toString();
                        progressBarRegister.setVisibility(View.VISIBLE);
-                       auth.createUserWithEmailAndPassword(Emaail,pas).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
-                           @Override
-                           public void onComplete(@NonNull Task<AuthResult> task) {
-                               progressBarRegister.setVisibility(View.GONE);
-                               if (!task.isSuccessful()) {
-                                   Toast.makeText(Register.this, getResources().getString(R.string.alreadyuser) ,
-                                           Toast.LENGTH_SHORT).show();
-                               } else {
-                                   String token= SharedPrefManager.getInstance(Register.this).getDeviceToken();
+                       final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users");
 
-                                   DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users");
-                                   FirebaseUser user = getInstance().getCurrentUser();
-                                   HashMap<String,String> hashMap=new HashMap<>();
-                                   hashMap.put("username",E_FullName.getText().toString());
-                                   hashMap.put("major",E_Major.getText().toString());
-                                   hashMap.put("years",E_Years.getText().toString());
-                                   hashMap.put("location",E_Location.getText().toString());
-                                   hashMap.put("c_name",E_CompanyName.getText().toString());
-                                   hashMap.put("phone",E_Major.getText().toString());
-                                   hashMap.put("email",E_Email.getText().toString());
-                                   hashMap.put("token",token);
-                                   hashMap.put("id",user.getUid());
-                                   databaseReference.push().setValue(hashMap);
-                                   SharedPrefManager.getInstance(getBaseContext()).saveMyName(E_FullName.getText().toString());
-                                   SharedPrefManager.getInstance(getBaseContext()).saveSocialId(user.getUid());
-//                                      user.sendEmailVerification();
-//                                      Toast.makeText(MainActivity.this,
-//                                              getResources().getString(R.string.verfiymail) + user.getEmail(),
-//                                              Toast.LENGTH_SHORT).show();
-                                   auth.getInstance().signOut();
-                                   Intent intent=new Intent(Register.this,Login.class);
-                                   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                   startActivity(intent);
-                                   finish();
+                       databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                           @Override
+                           public void onDataChange(DataSnapshot dataSnapshot) {
+                               if(dataSnapshot.exists()) {
+                                   for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                       if (dataSnapshot1.exists()) {
+                                           progressBarRegister.setVisibility(View.GONE);
+                                           Toast.makeText(Register.this, "" + getResources().getString(R.string.uniqueusername), Toast.LENGTH_SHORT).show();
+                                       }
+                                   }
+                               }else {
+                                   RegisterIndvidual(Emaail,pas);
                                }
                            }
+
+                           @Override
+                           public void onCancelled(DatabaseError databaseError) {
+
+                           }
                        });
+
+
                    }
                }
 
@@ -161,6 +139,11 @@ public class Register extends AppCompatActivity {
         Type="indvidual";
         progressBarRegister=findViewById(R.id.progressBarRegister);
         E_FullNameCompany=findViewById(R.id.E_FullNameCompany);
+        E_FirstName = findViewById(R.id.E_FirstName);
+        E_LastName = findViewById(R.id.E_LastName);
+        E_FirstNameCompany = findViewById(R.id.E_FirstNameCompany);
+        E_LastNameCompany = findViewById(R.id.E_LastNameCompany);
+
         E_FullName = findViewById(R.id.E_FullName);
         E_Years = findViewById(R.id.E_Years);
         E_Major = findViewById(R.id.E_Major);
@@ -321,5 +304,122 @@ public class Register extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+    private Boolean ValidateFirstName(){
+        if (E_FirstName.getText().toString().trim().isEmpty()){
+            E_FirstName.setError(getResources().getString(R.string.feildempty));
+            return false;
+        }
+        return true;
+    }
+
+    private Boolean ValidateLastName(){
+        if (E_LastName.getText().toString().trim().isEmpty()){
+            E_LastName.setError(getResources().getString(R.string.feildempty));
+            return false;
+        }
+        return true;
+    }
+
+    private void RegisterIndvidual(String Emaail,String pas){
+        auth.createUserWithEmailAndPassword(Emaail,pas).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBarRegister.setVisibility(View.GONE);
+                if (!task.isSuccessful()) {
+                    Toast.makeText(Register.this, getResources().getString(R.string.alreadyuser) ,
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    String token= SharedPrefManager.getInstance(Register.this).getDeviceToken();
+
+                    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users");
+                    FirebaseUser user = getInstance().getCurrentUser();
+                    HashMap<String,String> hashMap=new HashMap<>();
+                    hashMap.put("username",E_FullName.getText().toString());
+                    hashMap.put("major",E_Major.getText().toString());
+                    hashMap.put("years",E_Years.getText().toString());
+                    hashMap.put("location",E_Location.getText().toString());
+                    hashMap.put("c_name",E_CompanyName.getText().toString());
+                    hashMap.put("phone",E_Major.getText().toString());
+                    hashMap.put("email",E_Email.getText().toString());
+                    hashMap.put("f_name",E_FirstName.getText().toString());
+                    hashMap.put("f_last",E_LastName.getText().toString());
+                    hashMap.put("type","1");
+                    hashMap.put("token",token);
+                    hashMap.put("id",user.getUid());
+                    databaseReference.push().setValue(hashMap);
+                    SharedPrefManager.getInstance(getBaseContext()).saveMyName(E_FullName.getText().toString());
+                    SharedPrefManager.getInstance(getBaseContext()).saveSocialId(user.getUid());
+//                                      user.sendEmailVerification();
+//                                      Toast.makeText(MainActivity.this,
+//                                              getResources().getString(R.string.verfiymail) + user.getEmail(),
+//                                              Toast.LENGTH_SHORT).show();
+                    auth.getInstance().signOut();
+                    Intent intent=new Intent(Register.this,Login.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+    }
+
+
+    private Boolean ValidateFirstNameCompany(){
+        if (E_FirstNameCompany.getText().toString().trim().isEmpty()){
+            E_FirstNameCompany.setError(getResources().getString(R.string.feildempty));
+            return false;
+        }
+        return true;
+    }
+
+    private Boolean ValidateLastNameCompany(){
+        if (E_LastNameCompany.getText().toString().trim().isEmpty()){
+            E_LastNameCompany.setError(getResources().getString(R.string.feildempty));
+            return false;
+        }
+        return true;
+    }
+
+
+    private void RegisterCompany(String Emaail,String pas){
+        auth.createUserWithEmailAndPassword(Emaail,pas).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBarRegister.setVisibility(View.GONE);
+                if (!task.isSuccessful()) {
+                    Toast.makeText(Register.this, getResources().getString(R.string.alreadyuser) ,
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    String token= SharedPrefManager.getInstance(Register.this).getDeviceToken();
+
+                    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users");
+                    FirebaseUser user = getInstance().getCurrentUser();
+                    HashMap<String,String> hashMap=new HashMap<>();
+                    hashMap.put("username",E_FullNameCompany.getText().toString());
+                    hashMap.put("c_name",E_Company.getText().toString());
+                    hashMap.put("phone",E_PhoneCompany.getText().toString());
+                    hashMap.put("email",E_EmailCompany.getText().toString());
+                    hashMap.put("f_name",E_FirstNameCompany.getText().toString());
+                    hashMap.put("f_last",E_LastNameCompany.getText().toString());
+                    hashMap.put("token",token);
+                    hashMap.put("type","2");
+
+                    hashMap.put("id",user.getUid());
+                    databaseReference.push().setValue(hashMap);
+                    SharedPrefManager.getInstance(getBaseContext()).saveMyName(E_FullNameCompany.getText().toString());
+                    SharedPrefManager.getInstance(getBaseContext()).saveSocialId(user.getUid());
+//                                      user.sendEmailVerification();
+//                                      Toast.makeText(MainActivity.this,
+//                                              getResources().getString(R.string.verfiymail) + user.getEmail(),
+//                                              Toast.LENGTH_SHORT).show();
+                    auth.getInstance().signOut();
+                    Intent intent=new Intent(Register.this,Login.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
     }
 }

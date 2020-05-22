@@ -47,7 +47,7 @@ public class Login extends AppCompatActivity {
     DatabaseReference currnetuser;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private TextView Privacy,T_forget;
-    Button Btn_signup;
+    TextView Btn_signup;
     EditText E_EmailLogin;
     EditText E_PasswordLogin;
     CheckBox CheckBox;

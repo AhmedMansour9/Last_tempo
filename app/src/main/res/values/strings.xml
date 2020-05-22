@@ -131,8 +131,8 @@
     <string name="or">Or</string>
     <string name="loginface">LOGIN WITH FACEBOOK</string>
     <string name="noacc">Don\'t Have An Account?</string>
-    <string name="signupnow">SIGN UP NOW</string>
-    <string name="fullname">Full Name</string>
+    <string name="signupnow">SIGN UP</string>
+    <string name="fullname">User Name</string>
     <string name="policy">Terms &amp; Conditions</string>
     <string name="data_policty">This application is only an advertisement platform and is not responsible for interactions between users either financially or physically,</string>
     <string name="register">Register</string>
@@ -154,7 +154,7 @@
     <string name="feildempty">Fill input with valid data</string>
     <string name="invalidemail">Please Enter Valid Email</string>
     <string name="enterpas">Please Enter Valid Password</string>
-    <string name="alreadyuser">This User Already Exist</string>
+    <string name="alreadyuser">This Email Already Exist</string>
     <string name="checked">Please Make Sure That You Check Privacy</string>
     <string name="log_out">Log Out</string>
     <string name="title">Title</string>
@@ -187,6 +187,9 @@
     <string name="blockedhim">You blocked this person You cannot message him in this chat</string>
     <string name="blockedyou">This person is Not available for you</string>
     <string name="invalidemailorpas">Invalid Email Or Password</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="uniqueusername">This User Name is already token</string>
     <string-array name="types">
         <item>Present a service </item>
         <item>Request a service</item>

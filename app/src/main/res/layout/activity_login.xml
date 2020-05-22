@@ -116,7 +116,7 @@
                 android:textColor="#fff"
                 android:layout_below="@+id/card_view"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_100sdp"
                 android:background="@drawable/bc_buttons"
                 />
             <TextView
@@ -125,60 +125,60 @@
                 android:text="@string/forgetpas"
                 android:textColor="#a2a2a2"
                 android:id="@+id/T_forget"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/Btn_login"
-                android:layout_marginTop="@dimen/_10sdp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/noacc"
-                android:textColor="#a2a2a2"
-                android:id="@+id/T_forgetpass"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/Btn_loginFace"
+                android:layout_alignEnd="@+id/card_view"
+                android:layout_below="@+id/card_view"
                 android:layout_marginTop="@dimen/_15sdp"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/noacc"-->
+<!--                android:textColor="#a2a2a2"-->
+<!--                android:id="@+id/T_forgetpass"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_below="@+id/T_forget"-->
+<!--                android:layout_marginTop="@dimen/_15sdp"/>-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/T_forget"
-                android:layout_centerHorizontal="true"
-                android:text="@string/or"
-                android:id="@+id/or"
-                android:textColor="#a2a2a2"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/_15sdp"
-                />
-            <View
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_2sdp"
-                android:background="#ee3f60"
-                android:layout_below="@+id/T_forget"
-                android:layout_marginTop="@dimen/_22sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:layout_toLeftOf="@+id/or"
-                />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/T_forget"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:text="@string/or"-->
+<!--                android:id="@+id/or"-->
+<!--                android:textColor="#a2a2a2"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginTop="@dimen/_15sdp"-->
+<!--                />-->
+<!--            <View-->
+<!--                android:layout_width="@dimen/_100sdp"-->
+<!--                android:layout_height="@dimen/_2sdp"-->
+<!--                android:background="#ee3f60"-->
+<!--                android:layout_below="@+id/T_forget"-->
+<!--                android:layout_marginTop="@dimen/_22sdp"-->
+<!--                android:layout_marginEnd="@dimen/_15sdp"-->
+<!--                android:layout_toLeftOf="@+id/or"-->
+<!--                />-->
 
-            <View
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_2sdp"
-                android:background="#ee3f60"
-                android:layout_below="@+id/T_forget"
-                android:layout_marginTop="@dimen/_22sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_toRightOf="@+id/or"
-                />
+<!--            <View-->
+<!--                android:layout_width="@dimen/_100sdp"-->
+<!--                android:layout_height="@dimen/_2sdp"-->
+<!--                android:background="#ee3f60"-->
+<!--                android:layout_below="@+id/T_forget"-->
+<!--                android:layout_marginTop="@dimen/_22sdp"-->
+<!--                android:layout_marginStart="@dimen/_15sdp"-->
+<!--                android:layout_toRightOf="@+id/or"-->
+<!--                />-->
 
             <Button
                 android:layout_width="@dimen/_230sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:id="@+id/Btn_loginFace"
                 android:text="@string/loginface"
+                android:visibility="invisible"
                 android:textStyle="bold"
                 android:textColor="#fff"
-                android:layout_below="@+id/or"
+                android:layout_below="@+id/Btn_login"
                 android:gravity="start|center"
                 android:paddingStart="@dimen/_30sdp"
                 android:drawableStart="@drawable/facebook"
@@ -195,21 +195,20 @@
                 android:text="@string/noacc"
                 android:textColor="#a2a2a2"
                 android:id="@+id/T_noaccount"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/Btn_loginFace"
-                android:layout_marginTop="@dimen/_15sdp"/>
-            <Button
+                android:layout_marginStart="@dimen/_70sdp"
+                android:layout_below="@+id/Btn_login"
+                android:layout_marginTop="@dimen/_120sdp"/>
+            <TextView
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:id="@+id/Btn_signup"
                 android:text="@string/signupnow"
                 android:textStyle="bold"
-                android:textColor="#fff"
-                android:layout_below="@+id/T_noaccount"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:background="@drawable/bc_buttons"
+                android:layout_marginTop="@dimen/_120sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:textColor="#ee3f60"
+                android:layout_below="@+id/Btn_login"
+                android:layout_toEndOf="@+id/T_noaccount"
                 />
         </RelativeLayout>
     </ScrollView>

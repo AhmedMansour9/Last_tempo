@@ -28,6 +28,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,6 +56,8 @@ import com.tempomena.R;
 import com.tempomena.Fragments.myposts;
 import com.tempomena.tokenid.SharedPrefManager;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -154,20 +157,33 @@ public class Home extends AppCompatActivity
     private void GetUserNameFirebase(){
         final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users");
 
-        databaseReference.orderByChild("id").equalTo(mAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.orderByChild("id").equalTo(mAuth.getUid()).addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-               for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
-                   if(dataSnapshot1.exists()) {
-                       String username = dataSnapshot1.child("username").getValue().toString();
-                       SharedPrefManager.getInstance(getBaseContext()).saveMyName(username);
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()) {
+                    String username = dataSnapshot.child("username").getValue().toString();
+                    SharedPrefManager.getInstance(getBaseContext()).saveMyName(username);
 
-                   }
-               }
+                }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
