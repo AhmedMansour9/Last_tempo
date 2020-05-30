@@ -31,21 +31,30 @@
             <ImageView
                 android:layout_width="@dimen/_12sdp"
                 android:layout_height="@dimen/_12sdp"
-                android:layout_alignParentEnd="true"
+                android:layout_toStartOf="@+id/image_report"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:id="@+id/image_delete"
-                app:srcCompat="@drawable/ic_delete"/>
+                android:src="@drawable/ic_delete"/>
 
 
             <ImageView
                 android:layout_width="@dimen/_12sdp"
                 android:layout_height="@dimen/_12sdp"
                 android:layout_toStartOf="@+id/image_delete"
-                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:id="@+id/image_edit"
-                app:srcCompat="@drawable/ic_edit"/>
+                android:src="@drawable/ic_edit"/>
+
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:id="@+id/image_report"
+                android:background="@drawable/ic_report"/>
             <ImageView
                 android:id="@+id/product_image"
                 android:layout_width="@dimen/_100sdp"
@@ -195,7 +204,6 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/bc_city"
-
                 android:textSize="@dimen/_9sdp"
                 android:padding="@dimen/_5sdp"
                 android:maxLines="1"
@@ -249,7 +257,7 @@
         android:layout_below="@+id/itemcard"
         android:layout_marginTop="@dimen/_10sdp"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        ads:adUnitId="ca-app-pub-1430161852443923/1913949063">
     </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

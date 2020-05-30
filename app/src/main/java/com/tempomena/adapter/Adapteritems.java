@@ -5,6 +5,7 @@ package com.tempomena.adapter;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ import com.google.android.gms.ads.MobileAds;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.tempomena.Activites.ReportsPopup;
 import com.tempomena.Interface.itemViewinterface;
 import com.tempomena.R;
 import com.tempomena.Model.Retrivedata;
@@ -87,7 +89,7 @@ public class Adapteritems extends RecyclerView.Adapter<Adapteritems.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
         public ImageView image;
-        ImageView imageedit;
+        ImageView imageedit,image_report;
         ImageView imgdelete;
         ProgressBar progross;
         private AdView adView;
@@ -99,6 +101,7 @@ public class Adapteritems extends RecyclerView.Adapter<Adapteritems.MyViewHolder
             image =  view.findViewById(R.id.product_image);
             textadmin=view.findViewById(R.id.admintext);
             imageedit=view.findViewById(R.id.image_edit);
+            image_report=view.findViewById(R.id.image_report);
             adView = view.findViewById(R.id.adView);
             imgdelete=view.findViewById(R.id.image_delete);
             textname= view.findViewById(R.id.product_name);
@@ -182,9 +185,12 @@ public class Adapteritems extends RecyclerView.Adapter<Adapteritems.MyViewHolder
             if(token.equals(SharedPrefManager.getInstance(context).getSocialId())){
                 holder.imageedit.setVisibility(View.VISIBLE);
                 holder.imgdelete.setVisibility(View.VISIBLE);
+                holder.image_report.setVisibility(View.GONE);
             }else {
                 holder.imageedit.setVisibility(View.GONE);
                 holder.imgdelete.setVisibility(View.GONE);
+                holder.image_report.setVisibility(View.VISIBLE);
+
             }
             holder.descrption.setText(y.getDiscrption());
             String textdate=y.getDate();
@@ -298,7 +304,17 @@ public class Adapteritems extends RecyclerView.Adapter<Adapteritems.MyViewHolder
                 }
             });
 
+        holder.image_report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, ReportsPopup.class);
+                intent.putExtra("id",array.get(position).getKey());
+                intent.putExtra("username",SharedPrefManager.getInstance(context).getMyName());
 
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
         }
 
 

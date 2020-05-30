@@ -30,8 +30,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.tempomena.Model.UserloginMain;
 import com.tempomena.R;
 import com.tempomena.tokenid.SharedPrefManager;
@@ -143,9 +146,11 @@ public class Login extends AppCompatActivity {
                Toast.makeText(Login.this, getResources().getString(R.string.checked), Toast.LENGTH_SHORT).show();
            }else {
              String  firstName = E_EmailLogin.getText().toString();
+               final String Email = firstName.replaceAll("\\s","");
+
                String passwooord = E_PasswordLogin.getText().toString();
                progressBarLogin.setVisibility(View.VISIBLE);
-               mAuth.signInWithEmailAndPassword(firstName, passwooord).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+               mAuth.signInWithEmailAndPassword(Email, passwooord).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                    @Override
                    public void onComplete(@NonNull Task<AuthResult> task) {
                        progressBarLogin.setVisibility(View.GONE);
@@ -155,11 +160,32 @@ public class Login extends AppCompatActivity {
 
                        } else {
                            mAuth = FirebaseAuth.getInstance();
-                           SharedPrefManager.getInstance(getBaseContext()).saveSocialId(mAuth.getUid());
-                           Intent intent=new Intent(Login.this,Home.class);
-                           intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                           startActivity(intent);
-                           finish();
+
+                           final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("block_app");
+                           databaseReference.child( mAuth.getUid()).addValueEventListener(new ValueEventListener() {
+                               @Override
+                               public void onDataChange(DataSnapshot dataSnapshot) {
+                                   if(dataSnapshot.exists()){
+                                       mAuth.signOut();
+                                       Intent intent=new Intent(Login.this,Blocked.class);
+                                       startActivity(intent);
+                                   }else {
+                                       SharedPrefManager.getInstance(getBaseContext()).saveSocialId(mAuth.getUid());
+                                       Intent intent=new Intent(Login.this,Home.class);
+                                       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                       startActivity(intent);
+                                       finish();
+                                   }
+
+
+
+                               }
+
+                               @Override
+                               public void onCancelled(DatabaseError databaseError) {
+
+                               }
+                           });
 
 
 
@@ -256,19 +282,38 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             currnetuser= FirebaseDatabase.getInstance().getReference();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            String useer=user.getDisplayName();
-                            SharedPrefManager.getInstance(getBaseContext()).saveMyName(useer);
-                            final String emaail=user.getEmail();
-                            SharedPrefManager.getInstance(Login.this).saveSocialId(user.getUid());
-                            final String id=user.getUid();
-                            String token= SharedPrefManager.getInstance(Login.this).getDeviceToken();
-                            UserloginMain a=new UserloginMain(useer,emaail,id,token);
-                            currnetuser.child("Users").child(id).setValue(a);
-                            Intent intent=new Intent(Login.this,Home.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
+                            final FirebaseUser user = mAuth.getCurrentUser();
+                            final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("block_app");
+                            databaseReference.child( mAuth.getUid()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if(dataSnapshot.exists()){
+                                        mAuth.signOut();
+                                        Intent intent=new Intent(Login.this,Blocked.class);
+                                        startActivity(intent);
+                                    }else {
 
+                                    }
+                                    String useer=user.getDisplayName();
+                                    SharedPrefManager.getInstance(getBaseContext()).saveMyName(useer);
+                                    final String emaail=user.getEmail();
+                                    SharedPrefManager.getInstance(Login.this).saveSocialId(user.getUid());
+                                    final String id=user.getUid();
+                                    String token= SharedPrefManager.getInstance(Login.this).getDeviceToken();
+                                    UserloginMain a=new UserloginMain(useer,emaail,id,token);
+                                    currnetuser.child("Users").child(id).setValue(a);
+                                    Intent intent=new Intent(Login.this,Home.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
 
                         }
                     }
@@ -281,4 +326,6 @@ public class Login extends AppCompatActivity {
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
 
     }
+
+
 }

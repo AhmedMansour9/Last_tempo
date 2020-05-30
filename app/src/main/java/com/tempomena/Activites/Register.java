@@ -45,6 +45,7 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        auth = getInstance();
        init();
        Btn_Company();
        Btn_Indvidual();
@@ -60,12 +61,14 @@ public class Register extends AppCompatActivity {
                if(Type.equals("company")){
                    if (!ValidateFirstNameCompany()||!ValidateLastNameCompany()||!ValidateFullName_Company()||!ValidateName_Company()
                            ||!ValidatePhone_Company()
-                           ||!ValidateEmail_Company()
+                           ||!ValidateEmail_Company() ||ValidateEPassword_Company()
                    ){
                    } else{
                        username = E_FullNameCompany.getText().toString();
                        final String  pas = E_PasswordCompany.getText().toString();
                        final String Emaail = E_EmailCompany.getText().toString();
+                       final String Email = Emaail.replaceAll("\\s","");
+
                        progressBarRegister.setVisibility(View.VISIBLE);
                        final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users");
 
@@ -80,7 +83,7 @@ public class Register extends AppCompatActivity {
                                        }
                                    }
                                }else {
-                                   RegisterCompany(Emaail,pas);
+                                   RegisterCompany(Email,pas);
                                }
                            }
 
@@ -100,7 +103,9 @@ public class Register extends AppCompatActivity {
                    } else{
                        username = E_FullName.getText().toString();
                        final String  pas = E_Password.getText().toString();
-                       final String Emaail = E_Email.getText().toString();
+                      final String Emaail = E_Email.getText().toString();
+                       final String Email = Emaail.replaceAll("\\s","");
+
                        progressBarRegister.setVisibility(View.VISIBLE);
                        final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users");
 
@@ -115,7 +120,7 @@ public class Register extends AppCompatActivity {
                                        }
                                    }
                                }else {
-                                   RegisterIndvidual(Emaail,pas);
+                                   RegisterIndvidual(Email,pas);
                                }
                            }
 
@@ -160,7 +165,7 @@ public class Register extends AppCompatActivity {
         T_Indvidual = findViewById(R.id.T_Indvidual);
         card_view_Indvidual=findViewById(R.id.card_view_Indvidual);
         card_view_company=findViewById(R.id.card_view_company);
-        auth = getInstance();
+
 
     }
 
@@ -171,12 +176,17 @@ public class Register extends AppCompatActivity {
         }
         return true;
     }
-    private Boolean ValidateE_Company(){
-        if (E_Major.getText().toString().trim().isEmpty()){
-            E_Major.setError(getResources().getString(R.string.feildempty));
+    private Boolean ValidateEPassword_Company(){
+        if(E_PasswordCompany.getText().toString().trim().isEmpty()){
+            E_PasswordCompany.setError(getResources().getString(R.string.enterpas));
+            return false;
+        }else if (E_PasswordCompany.getText().toString().trim().length()<=6){
+            E_PasswordCompany.setError(getResources().getString(R.string.pasmin));
             return false;
         }
-        return true;
+        else {
+            return true;
+        }
     }
     private Boolean ValidateLocation(){
         if (E_Location.getText().toString().trim().isEmpty()){
@@ -219,10 +229,14 @@ public class Register extends AppCompatActivity {
         return true;
     }
     private Boolean ValidatePassword(){
-        if(E_Password.getText().toString().trim().isEmpty()&&E_Password.getText().toString().trim().length()>3){
+        if(E_Password.getText().toString().trim().isEmpty()){
             E_Password.setError(getResources().getString(R.string.enterpas));
             return false;
-        }else {
+        }else if (E_Password.getText().toString().trim().length()<=6){
+            E_Password.setError(getResources().getString(R.string.pasmin));
+            return false;
+        }
+        else {
             return true;
         }}
     private static boolean isValidEmail(String email) {

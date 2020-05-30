@@ -146,7 +146,31 @@ public class Home extends AppCompatActivity
            init();
          SendTokenFirebase();
         GetUserNameFirebase();
+        CheckedBlocked();
 
+    }
+
+    private void CheckedBlocked() {
+        final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("block_app");
+        databaseReference.child( mAuth.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    mAuth.signOut();
+                    Intent intent=new Intent(Home.this,Login.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }else {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void storeToken(String token) {
@@ -161,8 +185,11 @@ public class Home extends AppCompatActivity
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists()) {
-                    String username = dataSnapshot.child("username").getValue().toString();
-                    SharedPrefManager.getInstance(getBaseContext()).saveMyName(username);
+                    if(dataSnapshot.child("username").getValue().toString()!=null){
+                        String username = dataSnapshot.child("username").getValue().toString();
+                        SharedPrefManager.getInstance(Home.this).saveMyName(username);
+
+                    }
 
                 }
             }
@@ -196,7 +223,7 @@ public class Home extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()) {
                     String token = dataSnapshot.child("token").getValue().toString();
-                    SharedPrefManager.getInstance(getBaseContext()).saveTokenAdmin(token);
+                    SharedPrefManager.getInstance(Home.this).saveTokenAdmin(token);
                 }
             }
 
@@ -226,11 +253,9 @@ public class Home extends AppCompatActivity
         mHandler.removeCallbacks(mRunnable);
     }
     private void loadInterstitial() {
+        mInterstitialAd.setAdUnitId("ca-app-pub-1430161852443923/2843887354");
 
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("SEE_YOUR_LOGCAT_TO_GET_YOUR_DEVICE_ID")
-                .setRequestAgent("android_studio:ad_template").build();
-        mInterstitialAd.loadAd(adRequest);
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
 

@@ -182,6 +182,7 @@
     <string name="type_message">Type Your Message</string>
     <string name="specialad">Featured ad</string>
     <string name="received_newpost">New Ad From tempo Users </string>
+    <string name="new_report">New Report From tempo Users</string>
     <string name="block">Block</string>
     <string name="unblock">Un block</string>
     <string name="blockedhim">You blocked this person You cannot message him in this chat</string>
@@ -189,7 +190,18 @@
     <string name="invalidemailorpas">Invalid Email Or Password</string>
     <string name="firstname">First Name</string>
     <string name="lastname">Last Name</string>
-    <string name="uniqueusername">This User Name is already token</string>
+    <string name="uniqueusername">This UserName is already token</string>
+    <string name="pasmin">Password must be at least 6 chracher</string>
+    <string name="confirm">ConFirm</string>
+    <string name="reportsucces">Report Send Success</string>
+    <string name="acc_bloc">This Account is Blocked, for more information please contact customer service at \n Support@tempomena.com </string>
+    <string-array name="reports">
+        <item> Wrong category/picture/price</item>
+        <item>Inappropriate ad content</item>
+        <item>Fraud or scam</item>
+        <item>Indecent user</item>
+        <item>Others</item>
+    </string-array>
     <string-array name="types">
         <item>Present a service </item>
         <item>Request a service</item>

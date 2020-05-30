@@ -157,10 +157,22 @@
     <string name="firstname">الاسم الاول</string>
     <string name="lastname">الاسم الاخير</string>
     <string name="uniqueusername">أسم المستخدم مسجل مسبقا</string>
+    <string name="pasmin">يجب أن تتكون كلمة المرور من 6 أحرف على الأقل</string>
+    <string name="confirm">تأكيد</string>
+    <string name="reportsucces">تم ارسال الابلاغ بنجاح</string>
+    <string name="new_report">بلاغ جديد من مستخدمين Tempo</string>
 
     <string-array name="types">
         <item>تقديم خدمة </item>
         <item>طلب خدمة</item>
+    </string-array>
+
+    <string-array name="reports">
+        <item> خطأ بالقسم أو صورأو سعر</item>
+        <item>محتوى غير لائق</item>
+        <item>نصب او احتيال</item>
+        <item>مستخدم غير لائق</item>
+        <item>اخرى</item>
     </string-array>
 
 </resources>
