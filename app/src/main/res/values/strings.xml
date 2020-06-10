@@ -40,7 +40,7 @@
     <string name="desc_firebase_ui">Use the FirebaseUI-Android library to authenticate with Firebase.</string>
     <string name="hint_user_id">User ID</string>
     <string name="get_custom_token">Get Token</string>
-    <string name="sign_in">Sign In</string>
+    <string name="sign_in">SIGN IN</string>
     <string name="create_account">Create Account</string>
     <string name="sign_out">Sign Out</string>
     <string name="verify_email">Verify Email</string>
@@ -124,18 +124,18 @@
     <string name="select_image">Select Image</string>
     <string name="validate_phone">Please Insert Phone</string>
     <string name="review_post">Post has been added, please wait review</string>
-    <string name="email">Email Address</string>
-    <string name="password">Password</string>
+    <string name="email">EMAIL</string>
+    <string name="password">PASSWORD</string>
     <string name="forgetpas">Forget Password ?</string>
     <string name="login">LOGIN</string>
     <string name="or">Or</string>
     <string name="loginface">LOGIN WITH FACEBOOK</string>
     <string name="noacc">Don\'t Have An Account?</string>
     <string name="signupnow">SIGN UP</string>
-    <string name="fullname">User Name</string>
+    <string name="fullname">UserName (English only)</string>
     <string name="policy">Terms &amp; Conditions</string>
     <string name="data_policty">This application is only an advertisement platform and is not responsible for interactions between users either financially or physically,</string>
-    <string name="register">Register</string>
+    <string name="register">SIGNUP</string>
     <string name="indvidual">Individual</string>
     <string name="company">Company</string>
     <string name="major">Major</string>
@@ -194,7 +194,25 @@
     <string name="pasmin">Password must be at least 6 chracher</string>
     <string name="confirm">ConFirm</string>
     <string name="reportsucces">Report Send Success</string>
+    <string name="help">Help</string>
+     <string name="pro_details">Product Details</string>
+    <string name="jordan">Jordan</string>
+    <string name="author">Author</string>
+    <string name="add_photos">Add Photos</string>
+    <string name="category">Category</string>
+    <string name="sub_category">Sub Section</string>
+    <string name="present_serv">Present a service </string>
+    <string name="request_serv">Request a service</string>
+    <string name="min_title">Minimum 6 characters &amp; Maximum 20 characters</string>
+    <string name="min_desc">Minimum 10 characters &amp; Maximum 1000 characters</string>
+    <string name="valid_title">Please Enter Valid Title ( Minimum 6 characters &amp; Maximum 20 characters)</string>
+    <string name="valid_desc">Please Enter Valid Descrption ( Minimum 10 characters &amp; Maximum 1000 characters )</string>
     <string name="acc_bloc">This Account is Blocked, for more information please contact customer service at \n Support@tempomena.com </string>
+    <string name="NEXT">NEXT</string>
+    <string name="GOT_IT">GOT IT</string>
+
+
+
     <string-array name="reports">
         <item> Wrong category/picture/price</item>
         <item>Inappropriate ad content</item>

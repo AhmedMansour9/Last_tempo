@@ -82,6 +82,7 @@ public class MyChat extends Fragment implements Token_View, SwipeRefreshLayout.O
         datamsg= FirebaseDatabase.getInstance().getReference("ChatUsers");
         Home.Rela_Govern.setVisibility(View.GONE);
         Home.toolbar.setVisibility(View.VISIBLE);
+        Home.T_Title.setText(getActivity().getResources().getString(R.string.messages));
 
         MySocial=SharedPrefManager.getInstance(getContext()).getSocialId();
 

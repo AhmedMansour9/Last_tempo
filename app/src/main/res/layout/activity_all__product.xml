@@ -4,27 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
     tools:context=".Activites.All_Product">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+        android:background="@color/colorAccent"
+
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#fff"
+        android:layout_height="@dimen/_90sdp"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:id="@+id/Img_Back"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:src="@drawable/ic_back"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="ekfjekfjlfj"
-                android:textColor="#000"
+                android:text="dlfkfleklf"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="#fff"
                 android:id="@+id/Title"
                 />
+            <LinearLayout
+                android:layout_width="@dimen/_100sdp"
+                android:weightSum="2"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/linear"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="@dimen/_45sdp">
+
+                <Button
+                    android:id="@+id/P_service"
+                    android:layout_width="@dimen/_100sdp"
+                    android:text="@string/p_service"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/bc_selected"
+                    />
+
+                <Button
+                    android:id="@+id/R_service"
+                    android:layout_width="@dimen/_100sdp"
+                    android:text="@string/r_service"
+                    android:gravity="center"
+                    android:textSize="@dimen/_10sdp"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:textColor="@color/darkblue"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/bc_type"
+                    />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_SubCategories"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/linear"
+                android:layout_height="match_parent"/>
+
 
 
         </RelativeLayout>
@@ -41,46 +94,12 @@
         />
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_below="@+id/view"
-        android:weightSum="2"
-        android:id="@+id/linear"
-        android:layout_marginTop="@dimen/_1sdp"
-        android:layout_height="@dimen/_45sdp">
 
-        <Button
-            android:id="@+id/P_service"
-            android:layout_width="0dp"
-            android:text="@string/p_service"
-            android:layout_weight="1"
-            android:textAllCaps="false"
-            android:textSize="@dimen/_14sdp"
-            android:textColor="#fff"
-            android:gravity="center"
-            android:layout_height="@dimen/_45sdp"
-            android:background="@drawable/bc_selected"
-            />
-
-        <Button
-            android:id="@+id/R_service"
-            android:layout_width="0dp"
-            android:text="@string/r_service"
-            android:gravity="center"
-            android:textSize="@dimen/_14sdp"
-            android:textAllCaps="false"
-            android:layout_weight="1"
-            android:textColor="@color/darkblue"
-            android:layout_height="@dimen/_45sdp"
-            android:background="@drawable/bc_type"
-            />
-
-    </LinearLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
-        android:layout_below="@+id/linear"
+        android:layout_below="@+id/view"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true">

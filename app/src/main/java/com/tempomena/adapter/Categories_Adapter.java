@@ -1,20 +1,31 @@
 package com.tempomena.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.tempomena.ChangeLanguage;
 import com.tempomena.Interface.Categories_View;
+import com.tempomena.ItemAnimation;
 import com.tempomena.Model.Category;
 import com.tempomena.R;
 
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -28,29 +39,30 @@ public class Categories_Adapter extends RecyclerView.Adapter<Categories_Adapter.
     Context con;
     Categories_View categories_view;
     int row_index=0;
+    private int animation_type = 0;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView Name;
-        View views;
+        CardView Card;
+        ImageView image;
+
         RelativeLayout relative_row;
         public MyViewHolder(View view) {
             super(view);
-            Name=view.findViewById(R.id.Name);
-            views=view.findViewById(R.id.view);
-            relative_row=view.findViewById(R.id.relative_row);
-
+            Name=view.findViewById(R.id.Title);
+            image=view.findViewById(R.id.image);
+            Card=view.findViewById(R.id.Card);
 
         }
     }
 
-    public Categories_Adapter(List<Category> list, Context context){
+    public Categories_Adapter(List<Category> list, Context context,int animation_type){
         this.filteredList=list;
         this.con=context;
+        this.animation_type = animation_type;
+
     }
-    //    public Restaurants_Adapter(List<Units_Detail> list){
-//        this.filteredList=list;
-//
-//    }
+
     public void setClickListener(Categories_View restaurantDetails_view) {
         this.categories_view = restaurantDetails_view;
 
@@ -72,27 +84,36 @@ public class Categories_Adapter extends RecyclerView.Adapter<Categories_Adapter.
            holder.Name.setText(filteredList.get(position).getCat_ar());
 
        }
-        if(row_index==position){
-            categories_view.cat(filteredList.get(position).getKey());
-            holder.views.setVisibility(View.VISIBLE);
-            holder.Name.setTextColor(con.getResources().getColor(R.color.holo_blue_bright));
-        }
-        else
-        {
-            holder.Name.setTextColor(con.getResources().getColor(R.color.light_black));
-            holder.views.setVisibility(View.GONE);
-        }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+        Glide.with(con)
+                .load( filteredList.get(position).getImg())
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        return false;
+                    }
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        return false;
+                    }
+                })
+                .into(holder.image);
+
+        holder.Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                row_index=position;
-                notifyDataSetChanged();
-                categories_view.cat(filteredList.get(position).getKey());
+                if(ChangeLanguage.getLanguage(con).equals("en")){
+                    categories_view.cat(filteredList.get(position).getKey(),filteredList.get(position).getCat_en());
+                }else {
+                    categories_view.cat(filteredList.get(position).getKey(),filteredList.get(position).getCat_ar());
+
+                }
 
             }
         });
 
 
+        setAnimation(holder.itemView, position);
 
     }
 
@@ -108,6 +129,15 @@ public class Categories_Adapter extends RecyclerView.Adapter<Categories_Adapter.
     @Override
     public int getItemViewType(int position) {
         return position;
+    }
+    private int lastPosition = -1;
+    private boolean on_attach = true;
+
+    private void setAnimation(View view, int position) {
+        if (position > lastPosition) {
+            ItemAnimation.animate(view, on_attach ? position : -1, animation_type);
+            lastPosition = position;
+        }
     }
 
 }

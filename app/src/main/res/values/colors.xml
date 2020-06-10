@@ -4,7 +4,7 @@
     <color name="btnSignUp">#39796b</color>
 
     <color name="green">#9BAC44</color>
-    <color name="blue">#00ADEE</color>
+    <color name="blue">#1976D2</color>
 
 
     <color name="btnSignActive">#A9d440</color>
@@ -12,7 +12,7 @@
     <color name="overlayActionBar">#0e0d0e</color>
     <color name="colorPrimary">#bdbdbd</color>
     <color name="colorPrimaryDark">#707070</color>
-    <color name="colorAccent">#00ADEE</color>
+    <color name="colorAccent">#1976D2</color>
 
     <color name="white">#ffffff</color>
 
@@ -29,9 +29,23 @@
     <color name="light_black_">#33000000</color>
     <color name="light_white_">#33FFFFFF</color>
     <color name="dialog_bg">#f0f0f0</color>
+    <color name="orange_400">#FFA726</color>
 
     <drawable name="light_black_">#33000000</drawable>
     <color name="darkblue">#003152</color>
+
+
+    <color name="grey_3">#f7f7f7</color>
+    <color name="grey_5">#f2f2f2</color>
+    <color name="grey_10">#e6e6e6</color>
+    <color name="grey_20">#cccccc</color>
+    <color name="grey_40">#999999</color>
+    <color name="grey_60">#666666</color>
+    <color name="grey_80">#37474F</color>
+    <color name="grey_90">#263238</color>
+    <color name="grey_95">#1a1a1a</color>
+    <color name="grey_100_">#0d0d0d</color>
+
 </resources>
 
     <!--<resources>-->

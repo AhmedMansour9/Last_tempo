@@ -18,19 +18,22 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#fff"
+            android:background="@color/colorAccent"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <ImageView
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="@dimen/_30sdp"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/logo"
+                    android:text="@string/pro_details"
+                    android:id="@+id/T_Title"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_18sdp"
                     />
-
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
@@ -57,10 +60,11 @@
         android:layout_width="@dimen/_80sdp"
         android:layout_height="@dimen/_40sdp"
         app:elevation="6dp"
+        app:backgroundTint="#00ADEE"
+        android:layout_toStartOf="@+id/floating_Message"
         android:scaleType="fitXY"
         app:fabSize="mini"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_165sdp"
         android:layout_below="@+id/appbar"
         app:srcCompat="@android:drawable/stat_sys_phone_call"/>
@@ -69,13 +73,14 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_Message"
-        android:layout_width="@dimen/_80sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_80sdp"
         app:elevation="6dp"
-        app:fabSize="mini"
+        app:backgroundTint="#00ADEE"
+        android:layout_alignParentEnd="true"
         android:layout_gravity="center"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_165sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_155sdp"
         android:layout_below="@+id/appbar"
         app:srcCompat="@android:drawable/ic_dialog_email"/>
     <me.relex.circleindicator.CircleIndicator
@@ -84,8 +89,7 @@
         android:layout_height="@dimen/_30sdp"
         app:ci_height="@dimen/_5sdp"
         app:ci_width="@dimen/_5sdp"
-        android:layout_below="@+id/vp_slider"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_180sdp"
         app:ci_drawable="@drawable/selected"
         app:ci_drawable_unselected="@drawable/unselected"
         android:layout_alignParentStart="true"
@@ -93,14 +97,23 @@
 
 
 
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_gravity="bottom"
+        android:layout_below="@+id/vp_slider"
+        android:background="@color/colorAccent"
+        app:contentInsetStartWithNavigation="0dp"
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
 
     <TextView
         android:textSize="19sp"
-        android:layout_below="@+id/view_pager_circle_indicator"
+        android:layout_below="@+id/vp_slider"
         android:layout_marginTop="@dimen/_10sdp"
         android:maxLength="50"
-        android:textColor="#003152"
+        android:textColor="#fff"
         android:textStyle="bold"
         android:maxLines="1"
         android:layout_marginStart="@dimen/_15sdp"
@@ -111,12 +124,13 @@
         android:text=""/>
 
     <TextView
-        android:text="28378"
-        android:textColor="#003152"
+        android:textColor="#fff"
         android:textSize="19sp"
-        android:layout_below="@+id/view_pager_circle_indicator"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@+id/vp_slider"
+        android:layout_marginTop="@dimen/_40sdp"
         android:layout_alignParentEnd="true"
+        android:textStyle="bold"
+        android:text="2o38372873"
          android:layout_marginEnd="@dimen/_10sdp"
         android:paddingRight="10dp"
         android:layout_width="wrap_content"
@@ -128,24 +142,36 @@
     <ImageView
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_15sdp"
-        android:layout_below="@id/textprice"
+        android:layout_below="@id/UserName"
         android:layout_marginTop="@dimen/_13sdp"
         android:id="@+id/marker"
         android:layout_marginStart="@dimen/_10sdp"
         app:srcCompat="@drawable/marker"/>
+    <TextView
+        android:id="@+id/UserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Title"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:textSize="15sp"
+        android:singleLine="true"
+        android:textColor="#fff"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
 
+        />
     <TextView
         android:id="@+id/textgovern"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textprice"
+        android:layout_below="@id/UserName"
         android:layout_marginTop="@dimen/_13sdp"
-        android:text=" بصيصيي"
         android:layout_marginEnd="@dimen/_25sdp"
         android:layout_toEndOf="@+id/marker"
         android:textSize="15sp"
         android:singleLine="true"
-        android:textColor="#003152"
+        android:textColor="#fff"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
 
@@ -161,7 +187,7 @@
         android:layout_marginEnd="@dimen/_10sdp"
         android:textSize="15sp"
         android:singleLine="true"
-        android:textColor="#003152"
+        android:textColor="#fff"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
 
@@ -177,19 +203,33 @@
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_15sdp"
         app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_3sdp"
         app:cardElevation="@dimen/_1sdp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:textColor="#003152"
+                android:textSize="16sp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/discrp"
+                android:text="@string/desc"
+                />
+
+            <TextView
+                android:textColor="#8A8B8C"
                 android:textSize="14sp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-               android:layout_centerInParent="true"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_below="@+id/discrp"
                 android:paddingRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

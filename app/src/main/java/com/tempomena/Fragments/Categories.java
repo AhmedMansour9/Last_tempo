@@ -44,6 +44,7 @@ import org.joda.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -58,6 +59,7 @@ import com.tempomena.ChangeLanguage;
 import com.tempomena.Interface.Categories_View;
 import com.tempomena.Interface.CityId_View;
 import com.tempomena.Interface.itemViewinterface;
+import com.tempomena.ItemAnimation;
 import com.tempomena.Model.Cities_Response;
 import com.tempomena.Model.Gallery;
 import com.tempomena.Model.Category;
@@ -66,6 +68,8 @@ import com.tempomena.Interface.Open_Galler_View;
 import com.tempomena.Model.Retrivedata;
 import com.tempomena.Model.SubCategories_Model;
 import com.tempomena.R;
+import com.tempomena.SpacingItemDecoration;
+import com.tempomena.Tools;
 import com.tempomena.adapter.Adapteritems;
 import com.tempomena.adapter.Slider_Adapter;
 import com.tempomena.adapter.Categories_Adapter;
@@ -78,6 +82,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -170,6 +175,7 @@ public class Categories extends Fragment implements CityId_View,imgclick,itemVie
          databaseReference= FirebaseDatabase.getInstance().getReference();
         databaseReferenceSub= FirebaseDatabase.getInstance().getReference();
         Home.toolbar.setVisibility(View.VISIBLE);
+        Home.T_Title.setText(getActivity().getResources().getString(R.string.home));
         Home.Rela_Govern.setVisibility(View.VISIBLE);
 
         init();
@@ -255,8 +261,6 @@ public class Categories extends Fragment implements CityId_View,imgclick,itemVie
     }
 
     public void Recyclview(){
-        recyclerView =v.findViewById(R.id.recycler_product);
-        recyclerView.setHasFixedSize(true);
         mAdapter = new Adapteritems(arrayadmin,getContext());
 //        recyclerView.setNestedScrollingEnabled(false);
 
@@ -265,48 +269,44 @@ public class Categories extends Fragment implements CityId_View,imgclick,itemVie
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
-
 
 
     }
 
     @Override
-    public void cat(String name) {
-        recyclerView.setVisibility(View.GONE);
-        listSubcatgory.clear();
-        getSubCategories(name);
+    public void cat(String key,String name) {
+//        recyclerView.setVisibility(View.GONE);
+//        listSubcatgory.clear();
+//        getSubCategories(name);
+        String Country=SharedPrefManager.getInstance(getContext()).getCountryId();
+        if(Country!=null) {
+            Intent intent = new Intent(getContext(), All_Product.class);
+            intent.putExtra("key", key);
+            intent.putExtra("name", name);
+            startActivity(intent);
+        }else {
+            Toast.makeText(con, ""+getActivity().getResources().getString(R.string.validate_city), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
     public void delete(String a) {
 
-        if (a != null) {
+        if (!a .equals("null")) {
 
-                Intent facebookIntent = getOpenFacebookIntent(getContext(),a);
+                Intent facebookIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(a));
                 startActivity(facebookIntent);
         }
     }
 
-    public static Intent getOpenFacebookIntent(Context context,String a) {
 
-        try {
-            context.getPackageManager()
-                    .getPackageInfo("com.facebook.katana", 0); //Checks if FB is even installed.
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("fb://page/"+a)); //Trys to make intent with FB's URI
-        } catch (Exception e) {
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(a)); //catches and opens a url to the desired page
-        }
-    }
 
 
     public void GetImages(){
         DatabaseReference data=FirebaseDatabase.getInstance().getReference("Gallery");
-        data.addValueEventListener(new ValueEventListener() {
+        data.orderByChild("cit_id").equalTo(SharedPrefManager.getInstance(getContext()).getCountryId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 list.clear();
@@ -389,12 +389,14 @@ public class Categories extends Fragment implements CityId_View,imgclick,itemVie
                 Category c=dataSnapshot.getValue(Category.class);
                 if (c != null && !hasCatId(c.getKey())) {
                     listcatgory.add(c);
-                    categories_adapter =new Categories_Adapter(listcatgory,getContext());
+                    Collections.sort(listcatgory);
+
+                    categories_adapter =new Categories_Adapter(listcatgory,getContext(), ItemAnimation.FADE_IN);
                     categories_adapter.setClickListener(Categories.this);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-                    linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-                    recycler_Categories.setLayoutManager(linearLayoutManager);
-                    recycler_Categories.setItemAnimator(new DefaultItemAnimator());
+                    recycler_Categories.setLayoutManager(new GridLayoutManager(getContext(), 3));
+//                    recycler_Categories.addItemDecoration(new SpacingItemDecoration(2, Tools.dpToPx(getContext(), 8), true));
+                    recycler_Categories.setHasFixedSize(true);
+                    recycler_Categories.setNestedScrollingEnabled(false);
                     recycler_Categories.setAdapter(categories_adapter);
 
                 }
@@ -435,53 +437,6 @@ public class Categories extends Fragment implements CityId_View,imgclick,itemVie
     }
 
 
-    public void getSubCategories(String Sub){
-        mSwipeRefreshLayout.setRefreshing(false);
-        listSubcatgory.clear();
-
-        Query mqery=databaseReference.child("Sub_Category").orderByChild("key").equalTo(Sub);
-        mqery.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                SubCategories_Model c = dataSnapshot.getValue(SubCategories_Model.class);
-                if (c != null && !hasSubId(c.getSub_key())) {
-
-                    listSubcatgory.add(c);
-                    recyclerView.setVisibility(View.VISIBLE);
-                    subcateg_adapter =new SubCategories_Adapter(listSubcatgory,getContext());
-                    subcateg_adapter.setClickListener(Categories.this);
-                    LinearLayoutManager linearLayoutManagersub = new LinearLayoutManager(getActivity());
-                    linearLayoutManagersub.setOrientation(RecyclerView.VERTICAL);
-                    recyclerView.setLayoutManager(linearLayoutManagersub);
-                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setAdapter(subcateg_adapter);
-//                mSwipeRefreshLayout.setRefreshing(false);
-                }
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-    }
 
     @Override
     public void onRefresh() {
@@ -532,79 +487,6 @@ public class Categories extends Fragment implements CityId_View,imgclick,itemVie
         Home.Visablty=true;
 
     }
-
-
-
-//    public void Retrivedataadmin(String childadmin) {
-//        mSwipeRefreshLayout.setRefreshing(true);
-//        dataadmin= FirebaseDatabase.getInstance().getReference().child("Products").child(childadmin);
-//        mListener=dataadmin.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                if (dataSnapshot.exists()) {
-//                    Retrivedata r = dataSnapshot.getValue(Retrivedata.class);
-//
-//                    String Date = r.getDate();
-//                    int days = GetDays(Date, Categories.date2);
-//                    if (days > 350) {
-//                        mSwipeRefreshLayout.setRefreshing(false);
-//                    } else {
-//                        if (r != null && !hasId(r.getName())) {
-//                            arrayadmin.add(0,r);
-//
-//                            mAdapter.notifyDataSetChanged();
-//
-//                        }
-//
-//                        mSwipeRefreshLayout.setRefreshing(false);
-//
-//                    }
-//                } else {
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
-
-//    public void RecycleviewSerach(){
-//        product.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            }
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                mAdapter.getFilter().filter(charSequence);
-//                mAdapter.notifyDataSetChanged();
-//
-//
-//
-//            }
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//            }
-//        });
-//    }
 
 
     public int GetDays(String dateone,String datetwo){

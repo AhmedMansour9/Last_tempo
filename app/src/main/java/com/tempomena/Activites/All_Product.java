@@ -34,17 +34,22 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.tempomena.Fragments.Categories;
+import com.tempomena.Interface.CityId_View;
 import com.tempomena.Interface.itemViewinterface;
 import com.tempomena.Model.Cities_Response;
 import com.tempomena.Model.Retrivedata;
+import com.tempomena.Model.SubCategories_Model;
 import com.tempomena.R;
 import com.tempomena.adapter.Adapteritems;
+import com.tempomena.adapter.SubCategories_Adapter;
 import com.tempomena.adapter.imgclick;
 import com.tempomena.tokenid.SharedPrefManager;
 
@@ -52,28 +57,29 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
-public class All_Product extends AppCompatActivity implements imgclick,itemViewinterface, SwipeRefreshLayout.OnRefreshListener{
+public class All_Product extends AppCompatActivity implements CityId_View,imgclick,itemViewinterface, SwipeRefreshLayout.OnRefreshListener{
     ImageView imgone,imgtwo,imgthree,imgfour;
     ImageView deltone,deletetwo,deletethree,deletefour;
     EditText editname,editdiscrp,editdiscount,editphone,editgovern;
     Dialog update_items_layout;
     String Names,Country_Id;
     Button finish;
-    ImageView cameraone,cameratwo,camerathree,camerafour;
+    ImageView cameraone,cameratwo,camerathree,camerafour,Img_Back;
     String imgOne,imgTwo,imgThree,imgFour;
     String Nameone;
     DatabaseReference data;
-
+    List<SubCategories_Model> listSubcatgory;
     public static String date2;
     ArrayList<Retrivedata> arrayadmin;
     ArrayList<Retrivedata> testArray,EmptyArray;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView,recycler_SubCategories;
     private Adapteritems mAdapter;
     SwipeRefreshLayout mSwipeRefreshLayout;
     DatabaseReference category,dataproduct,dataadmin;
-    String Sub_Id,Name;
+    String Sub_Id,Name,Cat_Id;
     ArrayList<Cities_Response> arrayacities;
     ArrayAdapter<String> listTypes;
     TextView Title;
@@ -82,6 +88,9 @@ public class All_Product extends AppCompatActivity implements imgclick,itemViewi
     ArrayAdapter<Cities_Response> listCountries;
     Button p_service,R_service;
     int count,CountAdmin;
+    SubCategories_Adapter  subcateg_adapter;
+    DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,8 +99,17 @@ public class All_Product extends AppCompatActivity implements imgclick,itemViewi
 
         init();
         Recyclview();
-        SwipRefresh();
+        Btn_Back();
         SelectedTabs();
+    }
+
+    private void Btn_Back() {
+        Img_Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void SelectedTabs() {
@@ -132,17 +150,76 @@ public class All_Product extends AppCompatActivity implements imgclick,itemViewi
     private void init(){
         R_service=findViewById(R.id.R_service);
         p_service=findViewById(R.id.P_service);
+        Img_Back=findViewById(R.id.Img_Back);
         spinner_country=findViewById(R.id.spinner_country);
-        spinner_Types=findViewById(R.id.spinner_Types);
+        recycler_SubCategories=findViewById(R.id.recycler_SubCategories);
         Type_id="1";
         Title=findViewById(R.id.Title);
-        Sub_Id=getIntent().getStringExtra("id");
+        listSubcatgory=new ArrayList<>();
+        Cat_Id=getIntent().getStringExtra("key");
         Name=getIntent().getStringExtra("name");
+        getSubCategories(Cat_Id);
         Title.setText(Name);
         date2 = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
         arrayadmin=new ArrayList<>();
         testArray=new ArrayList<>();
 
+    }
+
+    public void getSubCategories(String Sub){
+        listSubcatgory.clear();
+        databaseReference= FirebaseDatabase.getInstance().getReference();
+        Query mqery=databaseReference.child("Sub_Category").orderByChild("key").equalTo(Sub);
+        mqery.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                SubCategories_Model c = dataSnapshot.getValue(SubCategories_Model.class);
+                if (c != null && !hasSubId(c.getSub_key())) {
+
+                    listSubcatgory.add(c);
+                    subcateg_adapter =new SubCategories_Adapter(listSubcatgory,All_Product.this);
+                    subcateg_adapter.setClickListener(All_Product.this);
+                    LinearLayoutManager linearLayoutManagersub = new LinearLayoutManager(All_Product.this);
+                    linearLayoutManagersub.setOrientation(RecyclerView.HORIZONTAL);
+                    recycler_SubCategories.setLayoutManager(linearLayoutManagersub);
+                    recycler_SubCategories.setItemAnimator(new DefaultItemAnimator());
+                    recycler_SubCategories.setAdapter(subcateg_adapter);
+//                mSwipeRefreshLayout.setRefreshing(false);
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+    private boolean hasSubId(String idc){
+        if(!TextUtils.isEmpty(idc)) {
+            for (SubCategories_Model fr : listSubcatgory) {
+                if (fr.getSub_key().equals(idc)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 
@@ -193,6 +270,7 @@ public class All_Product extends AppCompatActivity implements imgclick,itemViewi
             public void onDataChange(DataSnapshot dataSnapshot) {
              for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                  if (dataSnapshot1.exists()) {
+                     recyclerView.setVisibility(View.VISIBLE);
                      Retrivedata r = dataSnapshot1.getValue(Retrivedata.class);
                      testArray.add(r);
                      count++;
@@ -678,6 +756,15 @@ public class All_Product extends AppCompatActivity implements imgclick,itemViewi
 
             }
         });
+
+    }
+
+    @Override
+    public void Id(String Sub_Ids, String Cat_Name, String arabic) {
+        Sub_Id=Sub_Ids;
+        recyclerView.setVisibility(View.GONE);
+        arrayadmin.clear();
+        SwipRefresh();
 
     }
 }

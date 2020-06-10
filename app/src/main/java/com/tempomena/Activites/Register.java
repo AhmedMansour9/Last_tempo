@@ -47,8 +47,8 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         auth = getInstance();
        init();
-       Btn_Company();
-       Btn_Indvidual();
+//       Btn_Company();
+//       Btn_Indvidual();
        Registeer_Indvidual();
 
     }
@@ -58,42 +58,42 @@ public class Register extends AppCompatActivity {
         Btn_Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(Type.equals("company")){
-                   if (!ValidateFirstNameCompany()||!ValidateLastNameCompany()||!ValidateFullName_Company()||!ValidateName_Company()
-                           ||!ValidatePhone_Company()
-                           ||!ValidateEmail_Company() ||ValidateEPassword_Company()
-                   ){
-                   } else{
-                       username = E_FullNameCompany.getText().toString();
-                       final String  pas = E_PasswordCompany.getText().toString();
-                       final String Emaail = E_EmailCompany.getText().toString();
-                       final String Email = Emaail.replaceAll("\\s","");
-
-                       progressBarRegister.setVisibility(View.VISIBLE);
-                       final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users");
-
-                       databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
-                           @Override
-                           public void onDataChange(DataSnapshot dataSnapshot) {
-                               if(dataSnapshot.exists()) {
-                                   for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                                       if (dataSnapshot1.exists()) {
-                                           progressBarRegister.setVisibility(View.GONE);
-                                           Toast.makeText(Register.this, "" + getResources().getString(R.string.uniqueusername), Toast.LENGTH_SHORT).show();
-                                       }
-                                   }
-                               }else {
-                                   RegisterCompany(Email,pas);
-                               }
-                           }
-
-                           @Override
-                           public void onCancelled(DatabaseError databaseError) {
-
-                           }
-                       });
-                   }
-               }else {
+//               if(Type.equals("company")){
+//                   if (!ValidateFirstNameCompany()||!ValidateLastNameCompany()||!ValidateFullName_Company()||!ValidateName_Company()
+//                           ||!ValidatePhone_Company()
+//                           ||!ValidateEmail_Company() ||ValidateEPassword_Company()
+//                   ){
+//                   } else{
+//                       username = E_FullNameCompany.getText().toString();
+//                       final String  pas = E_PasswordCompany.getText().toString();
+//                       final String Emaail = E_EmailCompany.getText().toString();
+//                       final String Email = Emaail.replaceAll("\\s","");
+//
+//                       progressBarRegister.setVisibility(View.VISIBLE);
+//                       final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users");
+//
+//                       databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
+//                           @Override
+//                           public void onDataChange(DataSnapshot dataSnapshot) {
+//                               if(dataSnapshot.exists()) {
+//                                   for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+//                                       if (dataSnapshot1.exists()) {
+//                                           progressBarRegister.setVisibility(View.GONE);
+//                                           Toast.makeText(Register.this, "" + getResources().getString(R.string.uniqueusername), Toast.LENGTH_SHORT).show();
+//                                       }
+//                                   }
+//                               }else {
+//                                   RegisterCompany(Email,pas);
+//                               }
+//                           }
+//
+//                           @Override
+//                           public void onCancelled(DatabaseError databaseError) {
+//
+//                           }
+//                       });
+//                   }
+//               }else {
                    if (!ValidateFirstName()||!ValidateLastName()||!ValidateUsername()|| !ValidateMajor()||!ValidateYears()||!ValidateLocation()
                            ||!ValidateCompanyName()
                            ||!ValidatePhone()
@@ -132,7 +132,7 @@ public class Register extends AppCompatActivity {
 
 
                    }
-               }
+//               }
 
 
             }
@@ -143,28 +143,28 @@ public class Register extends AppCompatActivity {
     private void init(){
         Type="indvidual";
         progressBarRegister=findViewById(R.id.progressBarRegister);
-        E_FullNameCompany=findViewById(R.id.E_FullNameCompany);
+//        E_FullNameCompany=findViewById(R.id.E_FullNameCompany);
         E_FirstName = findViewById(R.id.E_FirstName);
         E_LastName = findViewById(R.id.E_LastName);
-        E_FirstNameCompany = findViewById(R.id.E_FirstNameCompany);
-        E_LastNameCompany = findViewById(R.id.E_LastNameCompany);
+//        E_FirstNameCompany = findViewById(R.id.E_FirstNameCompany);
+//        E_LastNameCompany = findViewById(R.id.E_LastNameCompany);
 
         E_FullName = findViewById(R.id.E_FullName);
         E_Years = findViewById(R.id.E_Years);
         E_Major = findViewById(R.id.E_Major);
         E_Location = findViewById(R.id.E_Location);
         E_Phone = findViewById(R.id.E_Phone);
-        E_EmailCompany=findViewById(R.id.E_EmailCompany);
-        E_PasswordCompany=findViewById(R.id.E_PasswordCompany);
-        E_Company=findViewById(R.id.E_Company);
-        E_PhoneCompany=findViewById(R.id.E_PhoneCompany);
+//        E_EmailCompany=findViewById(R.id.E_EmailCompany);
+//        E_PasswordCompany=findViewById(R.id.E_PasswordCompany);
+//        E_Company=findViewById(R.id.E_Company);
+//        E_PhoneCompany=findViewById(R.id.E_PhoneCompany);
         E_CompanyName = findViewById(R.id.E_CompanyName);
         E_Email=findViewById(R.id.E_Email);
         E_Password=findViewById(R.id.E_Password);
-        T_Company = findViewById(R.id.T_Company);
-        T_Indvidual = findViewById(R.id.T_Indvidual);
+//        T_Company = findViewById(R.id.T_Company);
+//        T_Indvidual = findViewById(R.id.T_Indvidual);
         card_view_Indvidual=findViewById(R.id.card_view_Indvidual);
-        card_view_company=findViewById(R.id.card_view_company);
+//        card_view_company=findViewById(R.id.card_view_company);
 
 
     }

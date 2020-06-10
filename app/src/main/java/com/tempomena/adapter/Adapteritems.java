@@ -178,17 +178,17 @@ public class Adapteritems extends RecyclerView.Adapter<Adapteritems.MyViewHolder
                 holder.textadmin.setVisibility(View.VISIBLE);
 
             }else {
-                holder.textadmin.setVisibility(View.GONE);
+                holder.textadmin.setVisibility(View.INVISIBLE);
             }
 
             String token=y.getSocial_id();
             if(token.equals(SharedPrefManager.getInstance(context).getSocialId())){
                 holder.imageedit.setVisibility(View.VISIBLE);
                 holder.imgdelete.setVisibility(View.VISIBLE);
-                holder.image_report.setVisibility(View.GONE);
+                holder.image_report.setVisibility(View.INVISIBLE);
             }else {
-                holder.imageedit.setVisibility(View.GONE);
-                holder.imgdelete.setVisibility(View.GONE);
+                holder.imageedit.setVisibility(View.INVISIBLE);
+                holder.imgdelete.setVisibility(View.INVISIBLE);
                 holder.image_report.setVisibility(View.VISIBLE);
 
             }

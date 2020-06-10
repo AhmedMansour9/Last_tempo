@@ -79,7 +79,7 @@ public class Home extends AppCompatActivity
    // FirebaseRecyclerAdapter<Category,MenuViewHolder> adapter;
     public static String Id="";
     public static String Name="";
-    public static TextView T_Government;
+    public static TextView T_Government,T_Title;
     public static RelativeLayout Rela_Govern;
     public static String token,Language;
     public static String Social_Id;
@@ -141,12 +141,14 @@ public class Home extends AppCompatActivity
         mInterstitialAd = newInterstitialAd();
         mAuth = FirebaseAuth.getInstance();
         Language=ChangeLanguage.getLanguage(this);
-//        loadInterstitial();
-//        showInterstitial();
+        loadInterstitial();
+        showInterstitial();
            init();
          SendTokenFirebase();
         GetUserNameFirebase();
         CheckedBlocked();
+
+
 
     }
 
@@ -253,7 +255,7 @@ public class Home extends AppCompatActivity
         mHandler.removeCallbacks(mRunnable);
     }
     private void loadInterstitial() {
-        mInterstitialAd.setAdUnitId("ca-app-pub-1430161852443923/2843887354");
+//        mInterstitialAd.setAdUnitId("ca-app-pub-1430161852443923/2843887354");
 
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
@@ -262,7 +264,7 @@ public class Home extends AppCompatActivity
     private InterstitialAd newInterstitialAd() {
 
         InterstitialAd interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.setAdUnitId("ca-app-pub-1430161852443923/2843887354");
         interstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
@@ -303,6 +305,7 @@ public class Home extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        toolbar.setTitle("الصفحة الرئيسية");
         setSupportActionBar(toolbar);
+        T_Title=findViewById(R.id.T_Title);
 //        toolbar.setLogo(R.mipmap.actionbarlogotw);
         //Initialize Firebase
         if(getIntent().getStringExtra("id")!=null) {
@@ -317,7 +320,7 @@ public class Home extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.darkblue));
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
@@ -425,12 +428,16 @@ public class Home extends AppCompatActivity
 
 
             case R.id.nav_language:
-                mCurrentSelectedPosition = 3;
+                mCurrentSelectedPosition = 4;
 
                 fr = new Language();
                 break;
 
+            case R.id.nav_help:
+                mCurrentSelectedPosition = 5;
 
+               startActivity(new Intent(Home.this,StepperWizardLight.class));
+                break;
 
             case R.id.log_out:
 
@@ -643,35 +650,35 @@ public class Home extends AppCompatActivity
 
 
 
-
-    //        DatabaseReference da5=FirebaseDatabase.getInstance().getReference().child("Sub_Category").push();
-//        da5.child("cat_ar").setValue("التواصل الاجتماعي");
-//        da5.child("cat_en").setValue("Social media");
+//        DatabaseReference da5=FirebaseDatabase.getInstance().getReference().child("Sub_Category").push();
+//        da5.child("cat_ar").setValue("أخري");
+//        da5.child("cat_en").setValue("Others");
 //        da5.child("key").setValue("-M7-z6ANpmN8hf_CCfgS");
 //        String key =da5.getKey();
 //        da5.child("sub_key").setValue(key);
-//
+
 //        DatabaseReference da6=FirebaseDatabase.getInstance().getReference().child("Sub_Category").push();
-//        da6.child("cat_ar").setValue("إعلانات");
-//        da6.child("cat_en").setValue("Advertisment");
+//        da6.child("cat_ar").setValue("التصميم الجرافيكي");
+//        da6.child("cat_en").setValue("Graphic Design");
 //        da6.child("key").setValue("-M7-z6ANpmN8hf_CCfgS");
 //        String key6 =da6.getKey();
 //        da6.child("sub_key").setValue(key6);
 //
 //        DatabaseReference da3=FirebaseDatabase.getInstance().getReference().child("Sub_Category").push();
-//        da3.child("cat_ar").setValue("التلفاز");
-//        da3.child("cat_en").setValue("TV");
+//        da3.child("cat_ar").setValue("التصميم الداخلي والديكور");
+//        da3.child("cat_en").setValue("Interior Design and Decoration");
 //        da3.child("key").setValue("-M7-z6ANpmN8hf_CCfgS");
 //        String key3 =da3.getKey();
 //        da3.child("sub_key").setValue(key3);
 //
-
-//        DatabaseReference da7=FirebaseDatabase.getInstance().getReference().child("Sub_Category").push();
-//        da7.child("cat_ar").setValue("عامة");
-//        da7.child("cat_en").setValue("General");
-//        da7.child("key").setValue("-M7-z6AVf5xPq30GChFL");
-//        String key7 =da7.getKey();
-//        da7.child("sub_key").setValue(key7);
+//
+//            DatabaseReference da7=FirebaseDatabase.getInstance().getReference().child("Sub_Category").push();
+//            da7.child("cat_ar").setValue("تصميم الحركة");
+//            da7.child("cat_en").setValue("Motion Design");
+//            da7.child("key").setValue("-M7-z6ANpmN8hf_CCfgS");
+//            String key7 =da7.getKey();
+//            da7.child("sub_key").setValue(key7);
+//
 
 
 

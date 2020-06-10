@@ -20,6 +20,7 @@ import com.bumptech.glide.request.target.Target;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.tempomena.ChangeLanguage;
 import com.tempomena.Model.Gallery;
 import com.tempomena.Interface.Open_Galler_View;
 import com.tempomena.R;
@@ -38,7 +39,7 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
     String prrice;
     Open_Galler_View delete_galler_view;
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView T_Name,T_Discrption,T_Model,T_Price,count;
+        public TextView title,location,T_Model,T_Price,count;
         ImageView mobile;
         ProgressBar progressBar;
         ImageView btncart;
@@ -46,9 +47,9 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
         ImageView imggg;
         public MyViewHolder(View view) {
             super(view);
-//            T_Name = view.findViewById(R.id.T_Name);
+            title = view.findViewById(R.id.title);
             imggg=view.findViewById(R.id.viewPagerItem_image1);
-
+            location=view.findViewById(R.id.location);
         }
 
 
@@ -77,7 +78,13 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
         String i = filteredList.get(position).getImg();
         Uri u = Uri.parse(i);
 //        holder.progressBar.setVisibility(View.VISIBLE);
+         holder.title.setText(filteredList.get(position).getTitle());
+        if(ChangeLanguage.getLanguage(con).equals("en")){
+            holder.location.setText(filteredList.get(position).getCit_en());
+        }   else {
+            holder.location.setText(filteredList.get(position).getCit_ar());
 
+        }
 
         Glide.with(con)
                 .load(u)
@@ -101,7 +108,7 @@ public class Slider_Adapter extends RecyclerView.Adapter<Slider_Adapter.MyViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                delete_galler_view.delete(filteredList.get(position).getLinl());
+                delete_galler_view.delete(filteredList.get(position).getLink());
             }
         });
 

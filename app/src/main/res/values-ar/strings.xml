@@ -7,7 +7,7 @@
     <string name="aboutt">من نحن</string>
     <string name="hint_user_id">User ID</string>
     <string name="get_custom_token">Get Token</string>
-    <string name="sign_in">Sign In</string>
+    <string name="sign_in">تسجيل دخول</string>
     <string name="create_account">انشاء حساب</string>
     <string name="sign_out">تسجيل خروج</string>
     <string name="verify_email">Verify Email</string>
@@ -91,13 +91,13 @@
     <string name="review_post">تمت إضافة المنشور ، يرجى الانتظار للمراجعة </string>
     <string name="email">البريد الالكتروني</string>
     <string name="password">رقم السري</string>
-    <string name="forgetpas">Forget Password?</string>
+    <string name="forgetpas">هل نسيت الرقم السري ؟</string>
     <string name="login">تسجيل </string>
     <string name="or">أو</string>
     <string name="loginface">تسجيل الدخول بالفيس بوك</string>
-    <string name="noacc">لا يوجد لديك أكونت ؟</string>
+    <string name="noacc">لا يوجد لديك حساب ؟</string>
     <string name="signupnow">انشاء حساب</string>
-    <string name="fullname">الاسم كامل</string>
+    <string name="fullname">الاسم كامل (انجليزي فقط)</string>
     <string name="policy">الأحكام والشروط</string>
     <string name="register">تسجيل</string>
     <string name="desc">التفاصيل</string>
@@ -161,10 +161,25 @@
     <string name="confirm">تأكيد</string>
     <string name="reportsucces">تم ارسال الابلاغ بنجاح</string>
     <string name="new_report">بلاغ جديد من مستخدمين Tempo</string>
+    <string name="pro_details">تفاصيل المنتج</string>
+    <string name="jordan">اردن</string>
+    <string name="author">مؤلف</string>
+    <string name="add_photos">أضف صور</string>
+    <string name="present_serv">تقديم خدمة </string>
+    <string name="request_serv">طلب خدمة</string>
+    <string name="category">الفئة</string>
+    <string name="sub_category">القسم الفرعي</string>
+    <string name="min_title">الحد الأدنى 6 أحرف والحد الاقصي 20 حرف</string>
+    <string name="min_desc">الحد الأدنى 10 أحرف والحد الأقصى 1000</string>
+    <string name="valid_title">من فضلك ادخل عنوان صحيح (الحد الأدنى 6 أحرف  والحد الاقصي 20 حرف)</string>
+    <string name="valid_desc">من فضلك ادخل تفاصيل صحيحة  (الحد الأدنى 10 أحرف والحد الأقصى 1000)</string>
+    <string name="NEXT">التالي</string>
+    <string name="GOT_IT">فهمتك</string>
 
+    <string name="help">مساعدة</string>
     <string-array name="types">
-        <item>تقديم خدمة </item>
-        <item>طلب خدمة</item>
+        <item> </item>
+        <item></item>
     </string-array>
 
     <string-array name="reports">

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.tempomena.Activites.Home;
+import com.tempomena.BuildConfig;
 import com.tempomena.R;
 
 import androidx.fragment.app.Fragment;
@@ -26,7 +27,7 @@ public class ContactUs extends Fragment {
     }
     View view;
     Button Btn_Chat;
-    TextView ContactUs,T_Advertisement,T_Customer;
+    TextView ContactUs,T_Advertisement,T_Customer,T_Version;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,9 +37,12 @@ public class ContactUs extends Fragment {
         ContactUs=view.findViewById(R.id.ContactUs);
         T_Advertisement=view.findViewById(R.id.T_Advertisement);
         ContactUs=view.findViewById(R.id.ContactUs);
+        T_Version=view.findViewById(R.id.T_Version);
         T_Customer=view.findViewById(R.id.T_Customer);
+        Home.T_Title.setText(getActivity().getResources().getString(R.string.aboutt));
         Home.Rela_Govern.setVisibility(View.GONE);
-
+        String versionName = BuildConfig.VERSION_NAME;
+        T_Version.setText(versionName);
 //        Btn_Chat.setOnClickListener(new View.OnClickListener() {
 //             @Override
 //             public void onClick(View view) {

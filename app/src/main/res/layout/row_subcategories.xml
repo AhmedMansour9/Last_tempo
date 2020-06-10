@@ -1,35 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:background="#fff"
-
-    android:layout_height="wrap_content">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height=".5dp"
-        android:background="#DFDFDF"
-        />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:id="@+id/relative_row"
+    android:layout_height="@dimen/_40sdp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#003152"
         android:id="@+id/Title"
-        android:layout_marginBottom="@dimen/_15sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        />
-
-    <ImageView
-        android:layout_width="@dimen/_15sdp"
-        android:layout_height="@dimen/_15sdp"
+        android:maxLines="1"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:text="e;fklfkelfkel"
         android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/_15sdp"
-        app:srcCompat="@drawable/ic_arrow"
+        android:textColor="#fff"
+        android:textStyle="bold"
         />
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_2sdp"
+        android:background="@color/white"
+        android:layout_alignEnd="@+id/Title"
+        android:layout_alignStart="@+id/Title"
+        android:id="@+id/view"
+        android:layout_alignParentBottom="true"
+        />
 </RelativeLayout>

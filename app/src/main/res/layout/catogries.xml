@@ -1,4 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="#fff"
@@ -6,65 +6,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.tempomena.Fragments.Categories">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_130sdp"
+                    android:id="@+id/recycler_banner2"
+                    />
 
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height=".5dp"
-                android:id="@+id/view"
-                android:background="#C5C5C5"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_Categories"
+    <View
         android:layout_width="match_parent"
-        android:background="#fff"
-        android:layout_below="@+id/view"
-        android:layout_height="@dimen/_35sdp"/>
-  <View
-      android:layout_width="match_parent"
-      android:layout_height=".5dp"
-      android:background="#e7e7e7"
-      android:id="@+id/vieew"
-      android:layout_below="@+id/recycler_Categories"/>
+        android:layout_height=".5dp"
+        android:layout_below="@+id/recycler_banner2"
 
-
-
+        android:id="@+id/view"
+        android:background="#C5C5C5"/>
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/swipe_container"
                 android:layout_width="match_parent"
-                android:layout_below="@+id/vieew"
+                android:layout_below="@+id/view"
                 android:layout_height="@dimen/_430sdp"
+                android:layout_marginBottom="@dimen/_60sdp"
+
                 android:layout_centerHorizontal="true">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_product"
+                    android:id="@+id/recycler_Categories"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="vertical" />
+                    android:layout_below="@+id/view"
+                    android:layout_height="match_parent"/>
+
 
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_below="@+id/swipe_container"
-                    android:layout_height="wrap_content">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_100sdp"
-                        android:id="@+id/recycler_banner2"
-                        />
-
-                    <!--<android.support.v4.view.ViewPager-->
-                    <!--android:id="@+id/vp_slider"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent" />-->
-
-
-                </RelativeLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/Float_AddPost"
@@ -72,20 +48,20 @@
                 android:layout_height="@dimen/_45sdp"
                 app:fabSize="normal"
                 android:elevation="0dp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 app:elevation="0dp"
                 app:rippleColor="@android:color/transparent"
                 app:backgroundTint="@android:color/transparent"
                 app:maxImageSize="@dimen/_50sdp"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_400sdp"
                 app:srcCompat="@drawable/ic_addpost"/>
 
 
 
         </RelativeLayout>
 
-</ScrollView>
     <!--            <android.support.v7.widget.CardView-->
     <!--                android:layout_width="match_parent"-->
     <!--                android:layout_height="@dimen/_35sdp"-->

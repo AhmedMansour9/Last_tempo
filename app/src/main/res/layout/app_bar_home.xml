@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize">
+<com.google.android.material.appbar.AppBarLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/appbar"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/appbar"
-        android:theme="@style/AppTheme.AppBarOverlay">
+
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#fff"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -54,7 +50,7 @@
                     android:layout_height="@dimen/_11sdp"
                     android:id="@+id/img_arrow"
                     android:layout_marginStart="@dimen/_5sdp"
-                    app:srcCompat="@drawable/arrow"
+                    android:src="@drawable/arrow"
                     android:layout_toEndOf="@+id/T_Government"
                     android:layout_centerVertical="true"
                     />
@@ -63,9 +59,8 @@
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
 
 
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</com.google.android.material.appbar.AppBarLayout>

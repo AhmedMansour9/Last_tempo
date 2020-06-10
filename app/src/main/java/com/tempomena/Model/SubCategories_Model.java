@@ -13,14 +13,26 @@ public class SubCategories_Model {
     private String cat_en;
     private String key;
     private String sub_key;
-   public SubCategories_Model(){
+    private String img;
+
+    public SubCategories_Model(){
 
    }
-    public SubCategories_Model(String cat_ar, String cat_en, String key, String sub_key) {
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public SubCategories_Model(String cat_ar, String cat_en, String key, String sub_key, String img) {
         this.cat_ar = cat_ar;
         this.cat_en = cat_en;
         this.key = key;
         this.sub_key = sub_key;
+        this.img = img;
     }
 
     public String getCat_ar() {

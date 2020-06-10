@@ -1,11 +1,19 @@
 package com.tempomena.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.tempomena.ChangeLanguage;
 import com.tempomena.Interface.CityId_View;
 import com.tempomena.Model.SubCategories_Model;
@@ -14,19 +22,26 @@ import com.tempomena.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class SubCategories_Adapter extends RecyclerView.Adapter<SubCategories_Adapter.MyViewHolder> {
     CityId_View cityId_view;
     List<SubCategories_Model> array=new ArrayList<>();
     Context context;
+    int row_index=0;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView Title;
+        View views;
+        RelativeLayout relative_row;
+
         public MyViewHolder(View view) {
             super(view);
             Title=view.findViewById(R.id.Title);
+            views=view.findViewById(R.id.view);
+            relative_row=view.findViewById(R.id.relative_row);
 
         }
 
@@ -60,15 +75,21 @@ public class SubCategories_Adapter extends RecyclerView.Adapter<SubCategories_Ad
 
         }
 
+        if(row_index==position){
+            cityId_view.Id(array.get(position).getSub_key(),array.get(position).getCat_en(),"");
+            holder.views.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.views.setVisibility(View.GONE);
+        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(ChangeLanguage.getLanguage(context).equals("en")) {
-                    cityId_view.Id(array.get(position).getSub_key(),array.get(position).getCat_en(),"");
-                }else {
+                row_index=position;
+                notifyDataSetChanged();
                     cityId_view.Id(array.get(position).getSub_key(),array.get(position).getCat_ar(),"");
-
-                }
             }
         });
 

@@ -37,6 +37,7 @@ public class Language extends Fragment {
         view= inflater.inflate(R.layout.fragment_language, container, false);
         Home.Rela_Govern.setVisibility(View.GONE);
         btn_Arabic=view.findViewById(R.id.Rela_Arabic);
+        Home.T_Title.setText(getActivity().getResources().getString(R.string.language));
         Btn_English=view.findViewById(R.id.Rela_English);
         Lan_Arabic();
         Lan_English();

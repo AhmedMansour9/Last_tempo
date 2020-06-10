@@ -2,7 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
    >
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        android:id="@+id/group1">
 
     <item
         android:id="@+id/nav_products"
@@ -16,23 +17,31 @@
             android:icon="@drawable/ic_inbox"
             android:id="@+id/mychat"
             android:title="@string/messages" />
-        <item
+    </group>
+    <group android:checkableBehavior="single"
+        android:id="@+id/group2">
+    <item
             android:id="@+id/chat"
-            android:icon="@drawable/ic_contactus"
-            android:title="@string/contact" />
+            android:icon="@drawable/ic_info"
+            android:title="@string/aboutt" />
 <!--        <item-->
 <!--            android:id="@+id/about"-->
 <!--            android:title="@string/aboutt" />-->
+
 
 
         <item
             android:id="@+id/nav_language"
             android:icon="@drawable/ic_language"
             android:title="@string/language" />
+
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_help"
+            android:title="@string/help" />
         <item android:id="@+id/log_out"
             android:icon="@drawable/ic_logout"
             android:title="@string/log_out" />
-
     </group>
 
 

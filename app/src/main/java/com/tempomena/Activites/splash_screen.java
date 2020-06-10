@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.tempomena.ChangeLanguage;
 import com.tempomena.R;
 import com.tempomena.tokenid.SharedPrefManager;
 
@@ -28,6 +29,7 @@ public class splash_screen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ChangeLanguage.changeLang(this);
         setContentView(R.layout.activity_splash_screen);
         vid = findViewById(R.id.videoView);
 
@@ -91,13 +93,15 @@ public class splash_screen extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        if(mAuth!=null)
         mAuth.removeAuthStateListener(mAuthListener);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mAuth.removeAuthStateListener(mAuthListener);
+        if(mAuth!=null)
+            mAuth.removeAuthStateListener(mAuthListener);
     }
 }
 

@@ -21,6 +21,7 @@
         <activity android:name=".Activites.Register" />
         <activity android:name=".Activites.Privacy" />
         <activity android:name=".Activites.All_Product" />
+        <activity android:name=".Activites.StepperWizardLight"/>
         <activity android:name=".Activites.splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -22,6 +22,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -99,14 +101,14 @@ import dmax.dialog.SpotsDialog;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ProductList extends AppCompatActivity implements Categories_View, SwipeRefreshLayout.OnRefreshListener,
+public class ProductList extends AppCompatActivity implements  SwipeRefreshLayout.OnRefreshListener,
         itemViewinterface{
 
     RecyclerView recyclerView;
     RelativeLayout rootlayout;
     String Nameone;
-    Button btnUpload;
-    Button btnselect;
+    ImageView btnUpload;
+    TextView btnselect;
     String Category_Name=null;
     String SubCategory_Name=null;
 
@@ -143,7 +145,7 @@ EditText name,descrip , phone, price ,govern;
 
     private InterstitialAd mInterstitialAd;
     FirebaseAuth mAuth;
-
+    RadioGroup radios;
     public static String token;
     ArrayList<CustomGallery> dataT;
     String Name,Discrption,Phone,Price,Govern,Type_id;
@@ -183,38 +185,24 @@ EditText name,descrip , phone, price ,govern;
 
     private void getTypes() {
 
-        listTypes = new ArrayAdapter<String>(this, R.layout.spinner_item_selected, getResources().getStringArray(R.array.types)) {
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                TextView textView = (TextView) super.getDropDownView(position, convertView, parent);
-                textView.setTextColor(Color.BLACK);
-                return textView;
-            }
-        };
-        listTypes.setDropDownViewResource(R.layout.customtextcolor);
-        spinner_Types.setAdapter(listTypes);
-        spinner_Types.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String type = spinner_Types.getSelectedItem().toString();
-                if(type.equals("Present a service")||type.equals("تقديم خدمة")){
+        int id = radios.getCheckedRadioButtonId();
+        View radioButton = radios.findViewById(id);
+        int radioId = radios.indexOfChild(radioButton);
+        RadioButton btn = (RadioButton) radios.getChildAt(radioId);
+        String selection = btn.getText().toString();
+        if(selection.equals("Present a service")||selection.equals("تقديم خدمة")){
                     Type_id="1";
                 }else {
                     Type_id="2";
                 }
 
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
     }
 
     private  void init(){
+        radios=findViewById(R.id.radios);
         Currency=findViewById(R.id.Currency);
-        spinner_Types=findViewById(R.id.spinner_Types);
+//        spinner_Types=findViewById(R.id.spinner_Types);
         Language= ChangeLanguage.getLanguage(this);
         spinner_country=findViewById(R.id.spinner_country);
         spinner_Categories=findViewById(R.id.spinner_Categories);
@@ -587,6 +575,17 @@ EditText name,descrip , phone, price ,govern;
             Toast.makeText(getBaseContext(), getResources().getString(R.string.validate_city), Toast.LENGTH_LONG).show();
 
         }
+        else if(Name.length()<6 )
+        {
+            Toast.makeText(getBaseContext(), getResources().getString(R.string.valid_title), Toast.LENGTH_LONG).show();
+
+        }
+        else if(Discrption.length()<10 )
+        {
+            Toast.makeText(getBaseContext(), getResources().getString(R.string.valid_desc), Toast.LENGTH_LONG).show();
+
+        }
+
         else if(dataT==null){
             View view = this.getCurrentFocus();
             if (view != null) {
@@ -1127,9 +1126,5 @@ public void SavedSahredPrefrenceSwitch(String name,String discroption,String pho
 
 
 
-    @Override
-    public void cat(String name) {
 
-
-    }
 }

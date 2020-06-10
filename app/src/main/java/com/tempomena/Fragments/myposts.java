@@ -121,6 +121,8 @@ public class myposts extends Fragment implements itemViewinterface, SwipeRefresh
         rootlayout =v.findViewById(R.id.rootlayout);
         text=v.findViewById(R.id.text);
         token = SharedPrefManager.getInstance(getContext()).getDeviceToken();
+        Home.T_Title.setText(getActivity().getResources().getString(R.string.myposts));
+
         Recyclview();
         SwipRefresh();
 

@@ -57,7 +57,7 @@ public class ActivityOneItem extends AppCompatActivity implements imageclick, bt
     private static final int REQUEST_CALL = 1;
     Banner_Adapter banner_adapter;
     String child,childadmiin;
-    TextView textprice, textdiscrp, Title, textdate, textgovern;
+    TextView textprice, textdiscrp, Title, textdate, textgovern,UserName;
     LinearLayoutManager linearLayoutManager;
     CircleIndicator circleIndicator;
     Retrivedata set;
@@ -100,7 +100,7 @@ public class ActivityOneItem extends AppCompatActivity implements imageclick, bt
         set = new Retrivedata();
         array = new ArrayList<>();
         NoImage=findViewById(R.id.NoImage);
-
+        UserName=findViewById(R.id.UserName);
         adView=findViewById(R.id.adView);
         Title = findViewById(R.id.Title);
         textdiscrp = findViewById(R.id.textdiscrp);
@@ -126,7 +126,7 @@ public class ActivityOneItem extends AppCompatActivity implements imageclick, bt
         String price = getIntent().getStringExtra("discount");
         String date = getIntent().getStringExtra("date");
         String govern = getIntent().getStringExtra("govern");
-
+        UserName.setText(getIntent().getStringExtra("user_name"));
         Title.setText( getIntent().getStringExtra("name"));
         textgovern.setText(govern);
         textdiscrp.setText(discrption);
