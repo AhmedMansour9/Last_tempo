@@ -16,11 +16,10 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height=".5dp"
+        android:layout_height="1dp"
         android:layout_below="@+id/recycler_banner2"
-
         android:id="@+id/view"
-        android:background="#C5C5C5"/>
+        android:background="#E6E6E6"/>
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -38,9 +37,8 @@
                 android:layout_width="match_parent"
                 android:layout_below="@+id/choose"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_height="@dimen/_370sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_above="@+id/Float_AddPost"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/view2"
                 android:layout_centerHorizontal="true">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -54,25 +52,30 @@
 
 
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_above="@+id/Float_AddPost"
+        android:id="@+id/view2"
+        android:background="#E6E6E6"/>
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/Float_AddPost"
                 android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_45sdp"
-                app:fabSize="normal"
+                android:layout_height="@dimen/_30sdp"
+                app:fabSize="mini"
                 android:elevation="0dp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 app:elevation="0dp"
                 app:rippleColor="@android:color/transparent"
                 app:backgroundTint="@android:color/transparent"
-                app:maxImageSize="@dimen/_50sdp"
+                app:maxImageSize="@dimen/_30sdp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:srcCompat="@drawable/ic_addpost"/>
 
-
-
+   
         </RelativeLayout>
 
     <!--            <android.support.v7.widget.CardView-->
