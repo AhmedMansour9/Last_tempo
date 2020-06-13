@@ -21,13 +21,26 @@
 
         android:id="@+id/view"
         android:background="#C5C5C5"/>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@color/darkblue"
+              android:text="@string/choosecat"
+              android:layout_centerHorizontal="true"
+              android:layout_marginTop="@dimen/_20sdp"
+              android:textSize="@dimen/_15sdp"
+              android:id="@+id/choose"
+              android:layout_below="@+id/view"/>
+
+
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/swipe_container"
                 android:layout_width="match_parent"
-                android:layout_below="@+id/view"
-                android:layout_height="@dimen/_430sdp"
-                android:layout_marginBottom="@dimen/_60sdp"
-
+                android:layout_below="@+id/choose"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_height="@dimen/_370sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_above="@+id/Float_AddPost"
                 android:layout_centerHorizontal="true">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -48,7 +61,7 @@
                 android:layout_height="@dimen/_45sdp"
                 app:fabSize="normal"
                 android:elevation="0dp"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 app:elevation="0dp"
                 app:rippleColor="@android:color/transparent"
                 app:backgroundTint="@android:color/transparent"

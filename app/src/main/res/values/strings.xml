@@ -210,7 +210,7 @@
     <string name="acc_bloc">This Account is Blocked, for more information please contact customer service at \n Support@tempomena.com </string>
     <string name="NEXT">NEXT</string>
     <string name="GOT_IT">GOT IT</string>
-
+    <string name="choosecat">Choose a Category To Browse</string>
 
 
     <string-array name="reports">

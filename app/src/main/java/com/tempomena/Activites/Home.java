@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -256,7 +257,6 @@ public class Home extends AppCompatActivity
     }
     private void loadInterstitial() {
 //        mInterstitialAd.setAdUnitId("ca-app-pub-1430161852443923/2843887354");
-
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 

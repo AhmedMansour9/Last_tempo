@@ -8,15 +8,12 @@
         android:layout_width="match_parent"
         android:scaleType="fitXY"
         android:layout_height="@dimen/_130sdp" />
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_130sdp"
-        android:background="#000"
-        android:alpha=".2"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
+        android:visibility="gone"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_95sdp"
         android:orientation="vertical">

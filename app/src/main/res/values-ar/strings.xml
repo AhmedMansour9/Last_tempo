@@ -175,6 +175,7 @@
     <string name="valid_desc">من فضلك ادخل تفاصيل صحيحة  (الحد الأدنى 10 أحرف والحد الأقصى 1000)</string>
     <string name="NEXT">التالي</string>
     <string name="GOT_IT">فهمتك</string>
+    <string name="choosecat">اختر فئة للعرض</string>
 
     <string name="help">مساعدة</string>
     <string-array name="types">

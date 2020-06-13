@@ -154,7 +154,6 @@ public class Adapteritems extends RecyclerView.Adapter<Adapteritems.MyViewHolder
               pos+=4;
 
               if(!holder.adView.isShown()) {
-                  MobileAds.initialize(context, "ca-app-pub-3940256099942544~3347511713");
                   adRequest = new AdRequest.Builder().build();
 
                   holder.adView.loadAd(adRequest);
