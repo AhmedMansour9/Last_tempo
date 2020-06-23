@@ -22,7 +22,7 @@ import androidx.viewpager.widget.ViewPager;
 
 public class StepperWizardLight extends AppCompatActivity {
 
-    private static final int MAX_STEP = 4;
+    private static final int MAX_STEP = 6;
 
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
