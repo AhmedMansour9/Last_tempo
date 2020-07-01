@@ -129,7 +129,6 @@ public class Home extends AppCompatActivity
                     getBaseContext().getResources().getDisplayMetrics());
         }
         setContentView(R.layout.activity_home);
-        // Create the InterstitialAd and set the adUnitId
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(Home.this, new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {

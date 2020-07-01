@@ -259,7 +259,6 @@
                     android:layout_width="@dimen/_140sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:buttonTint="#7e7f7f"
-                    android:checked="true"
                     android:text="@string/request_serv"
                     android:textColor="#7e7f7f"
                     android:textSize="@dimen/_12sdp" />

@@ -176,6 +176,7 @@
     <string name="NEXT">التالي</string>
     <string name="GOT_IT">فهمتك</string>
     <string name="choosecat">اختر فئة للعرض</string>
+    <string name="validate_type">من فضلك تأكد من اختيار نوع الخدمة</string>
 
     <string name="help">مساعدة</string>
     <string-array name="types">

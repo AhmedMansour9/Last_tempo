@@ -165,6 +165,8 @@
     <string name="english">English</string>
     <string name="arabic">عربي</string>
     <string name="validate_city">Please Make Sure That You Select Country First</string>
+    <string name="validate_type">Please Make Sure That You Select Type Service</string>
+
     <string name="validate_data">Please Fill All Inputs</string>
     <string name="currency">Currency</string>
     <string name="fogetpassword">Do you forget your Password ?</string>

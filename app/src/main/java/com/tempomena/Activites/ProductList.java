@@ -178,7 +178,7 @@ EditText name,descrip , phone, price ,govern;
         setContentView(R.layout.layout_add_product);
         mAuth = FirebaseAuth.getInstance();
          init();
-         getTypes();
+//         getTypes();
 
 
     }
@@ -573,6 +573,11 @@ EditText name,descrip , phone, price ,govern;
         } else if(Country_Id==null )
         {
             Toast.makeText(getBaseContext(), getResources().getString(R.string.validate_city), Toast.LENGTH_LONG).show();
+
+        }
+        else if(Type_id==null|| Type_id.isEmpty() )
+        {
+            Toast.makeText(getBaseContext(), getResources().getString(R.string.validate_type), Toast.LENGTH_LONG).show();
 
         }
         else if(Name.length()<6 )
