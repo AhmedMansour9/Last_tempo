@@ -178,7 +178,6 @@ EditText name,descrip , phone, price ,govern;
         setContentView(R.layout.layout_add_product);
         mAuth = FirebaseAuth.getInstance();
          init();
-//         getTypes();
 
 
     }
@@ -187,14 +186,16 @@ EditText name,descrip , phone, price ,govern;
 
         int id = radios.getCheckedRadioButtonId();
         View radioButton = radios.findViewById(id);
-        int radioId = radios.indexOfChild(radioButton);
-        RadioButton btn = (RadioButton) radios.getChildAt(radioId);
-        String selection = btn.getText().toString();
-        if(selection.equals("Present a service")||selection.equals("تقديم خدمة")){
-                    Type_id="1";
-                }else {
-                    Type_id="2";
-                }
+        if (radioButton != null) {
+            int radioId = radios.indexOfChild(radioButton);
+            RadioButton btn = (RadioButton) radios.getChildAt(radioId);
+            String selection = btn.getText().toString();
+            if (selection.equals("Present a service") || selection.equals("تقديم خدمة")) {
+                Type_id = "1";
+            } else {
+                Type_id = "2";
+            }
+        }
 
 
     }
@@ -559,7 +560,7 @@ EditText name,descrip , phone, price ,govern;
     }
 
     private void uploadimage() {
-
+        getTypes();
         Name = name.getText().toString().trim();
         Discrption = descrip.getText().toString().trim();
         Phone = phone.getText().toString().trim();

@@ -203,7 +203,7 @@
     <string name="add_photos">Add Photos</string>
     <string name="category">Category</string>
     <string name="sub_category">Sub Section</string>
-    <string name="present_serv">Present a service </string>
+    <string name="present_serv">Present a service</string>
     <string name="request_serv">Request a service</string>
     <string name="min_title">Minimum 6 characters &amp; Maximum 20 characters</string>
     <string name="min_desc">Minimum 10 characters &amp; Maximum 1000 characters</string>
@@ -214,6 +214,7 @@
     <string name="GOT_IT">GOT IT</string>
     <string name="choosecat">Choose a Category To Browse</string>
      <string name="addpost">Add a Post</string>
+
 
     <string-array name="reports">
         <item> Wrong category/picture/price</item>
