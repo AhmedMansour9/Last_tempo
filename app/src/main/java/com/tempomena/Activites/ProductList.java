@@ -566,7 +566,6 @@ EditText name,descrip , phone, price ,govern;
         Phone = phone.getText().toString().trim();
         Price = price.getText().toString().trim();
 
-
         if (Category_Name==null || SubId==null|| Name.isEmpty() || Discrption.isEmpty() || Phone.isEmpty() || Price.isEmpty()||token.isEmpty()) {
 
             Toast.makeText(getBaseContext(), getResources().getString(R.string.validate_data), Toast.LENGTH_LONG).show();

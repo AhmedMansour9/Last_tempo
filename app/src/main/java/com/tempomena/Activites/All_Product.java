@@ -348,6 +348,7 @@ public class All_Product extends AppCompatActivity implements CityId_View,imgcli
     public void onRefresh() {
         arrayadmin.clear();
         mAdapter.notifyDataSetChanged();
+        testArray.clear();
 
         Retrivedatauser(Sub_Id);
 
@@ -762,6 +763,7 @@ public class All_Product extends AppCompatActivity implements CityId_View,imgcli
     @Override
     public void Id(String Sub_Ids, String Cat_Name, String arabic) {
         Sub_Id=Sub_Ids;
+        testArray.clear();
         recyclerView.setVisibility(View.GONE);
         arrayadmin.clear();
         SwipRefresh();

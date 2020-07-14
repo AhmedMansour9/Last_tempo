@@ -150,6 +150,7 @@ public class Home extends AppCompatActivity
 
 
 
+
     }
 
     private void CheckedBlocked() {
@@ -647,28 +648,28 @@ public class Home extends AppCompatActivity
 //        String key7 =da7.getKey();
 //        da7.child("key").setValue(key7);
 
-
-
 //        DatabaseReference da5=FirebaseDatabase.getInstance().getReference().child("Sub_Category").push();
-//        da5.child("cat_ar").setValue("أخري");
-//        da5.child("cat_en").setValue("Others");
-//        da5.child("key").setValue("-M7-z6ANpmN8hf_CCfgS");
+//        da5.child("cat_ar").setValue("فيزياء");
+//        da5.child("cat_en").setValue("Physics");
+//        da5.child("key").setValue("-M7-z6AVf5xPq30GChFL");
 //        String key =da5.getKey();
 //        da5.child("sub_key").setValue(key);
-
+//
 //        DatabaseReference da6=FirebaseDatabase.getInstance().getReference().child("Sub_Category").push();
-//        da6.child("cat_ar").setValue("التصميم الجرافيكي");
-//        da6.child("cat_en").setValue("Graphic Design");
-//        da6.child("key").setValue("-M7-z6ANpmN8hf_CCfgS");
+//        da6.child("cat_ar").setValue("دين");
+//        da6.child("cat_en").setValue("Religion");
+//        da6.child("key").setValue("-M7-z6AVf5xPq30GChFL");
 //        String key6 =da6.getKey();
 //        da6.child("sub_key").setValue(key6);
 //
 //        DatabaseReference da3=FirebaseDatabase.getInstance().getReference().child("Sub_Category").push();
-//        da3.child("cat_ar").setValue("التصميم الداخلي والديكور");
-//        da3.child("cat_en").setValue("Interior Design and Decoration");
-//        da3.child("key").setValue("-M7-z6ANpmN8hf_CCfgS");
+//        da3.child("cat_ar").setValue("اجتماعيات");
+//        da3.child("cat_en").setValue("Social Studies");
+//        da3.child("key").setValue("-M7-z6AVf5xPq30GChFL");
 //        String key3 =da3.getKey();
 //        da3.child("sub_key").setValue(key3);
+
+
 //
 //
 //            DatabaseReference da7=FirebaseDatabase.getInstance().getReference().child("Sub_Category").push();
