@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -90,6 +92,7 @@ public class Home extends AppCompatActivity
     private InterstitialAd mInterstitialAd;
     FirebaseAuth mAuth;
     SharedPreferences shared;
+    private ImageView Img_twitter,Img_instegram,Img_facebook;
 
     private Handler mHandler = new Handler();
 
@@ -147,12 +150,41 @@ public class Home extends AppCompatActivity
          SendTokenFirebase();
         GetUserNameFirebase();
         CheckedBlocked();
-
+        openFacebook();
+        openInstegram();
+        openTwitter();
 
 
 
     }
 
+    private void openFacebook() {
+        Img_facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/tempomena"));
+                startActivity(intent);
+            }
+        });
+    }
+    private void openTwitter() {
+        Img_twitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.twitter.com/Tempomena"));
+                startActivity(intent);
+            }
+        });
+    }
+    private void openInstegram() {
+        Img_instegram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/p/CB8KjbfHz-l/?igshid=9mcjzamyxphj"));
+                startActivity(intent);
+            }
+        });
+    }
     private void CheckedBlocked() {
         final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("block_app");
         databaseReference.child( mAuth.getUid()).addValueEventListener(new ValueEventListener() {
@@ -306,6 +338,10 @@ public class Home extends AppCompatActivity
 //        toolbar.setTitle("الصفحة الرئيسية");
         setSupportActionBar(toolbar);
         T_Title=findViewById(R.id.T_Title);
+        Img_twitter=findViewById(R.id.Img_twitter);
+        Img_instegram=findViewById(R.id.Img_instegram);
+        Img_facebook=findViewById(R.id.Img_facebook);
+
 //        toolbar.setLogo(R.mipmap.actionbarlogotw);
         //Initialize Firebase
         if(getIntent().getStringExtra("id")!=null) {

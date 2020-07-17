@@ -109,7 +109,52 @@
         app:itemTextColor="#1e4468"
         app:itemIconTint="#1e4468"
         app:headerLayout="@layout/nav_header_home"
-        app:menu="@menu/activity_home_drawer" />
+        app:menu="@menu/activity_home_drawer" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_gravity="bottom"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/follow"
+                android:id="@+id/text"
+                android:textColor="#000"/>
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_below="@+id/text"
+                android:id="@+id/Img_twitter"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/ic_twitter"/>
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:src="@drawable/ic_instegram"
+                android:layout_below="@+id/text"
+                android:id="@+id/Img_instegram"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/Img_twitter"/>
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:src="@drawable/ic_face"
+                android:layout_below="@+id/text"
+                android:id="@+id/Img_facebook"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/Img_instegram"/>
+        </RelativeLayout>
+
+    </com.google.android.material.navigation.NavigationView>
+
         </androidx.drawerlayout.widget.DrawerLayout>
 
 </LinearLayout>
