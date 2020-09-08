@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tempomena.Activites.Home;
@@ -39,6 +40,8 @@ public class ContactUs extends Fragment {
         ContactUs=view.findViewById(R.id.ContactUs);
         T_Version=view.findViewById(R.id.T_Version);
         T_Customer=view.findViewById(R.id.T_Customer);
+        LinearLayout developed_company =  view.findViewById(R.id.developed_company);
+
         Home.T_Title.setText(getActivity().getResources().getString(R.string.aboutt));
         Home.Rela_Govern.setVisibility(View.GONE);
         String versionName = BuildConfig.VERSION_NAME;
@@ -83,6 +86,19 @@ public class ContactUs extends Fragment {
 
             }
         });
+
+        developed_company.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String contact = "+20 1128753353"; // use country code with your phone number
+                String url = "https://api.whatsapp.com/send?phone="+contact;
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+
+
 
 
         return view;

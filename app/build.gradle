@@ -1,19 +1,24 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.crashlytics'
-
 android {
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
     signingConfigs {
         debug {
-            storeFile file('E:\\Temp\\new tempo\\tempoo.jks')
-            storePassword '123456789'
-            keyAlias = 'azema'
-            keyPassword '123456789'
+            storeFile file('E:\\Tempo_Data\\tempo_keystore.jks')
+            storePassword 'ramadankareem14'
+            keyAlias = 'tempo'
+            keyPassword 'ramadankareem14'
         }
         release {
-            storeFile file('E:\\Temp\\new tempo\\tempoo.jks')
-            storePassword '123456789'
-            keyPassword '123456789'
-            keyAlias = 'azema'
+            storeFile file('E:\\Tempo_Data\\tempo_keystore.jks')
+            storePassword 'ramadankareem14'
+            keyPassword 'ramadankareem14'
+            keyAlias = 'tempo'
         }
     }
     compileSdkVersion 28
@@ -22,8 +27,8 @@ android {
         minSdkVersion 17
         multiDexEnabled true
         targetSdkVersion 28
-        versionCode 11
-        versionName "2.0"
+        versionCode 10
+        versionName "1.9"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -34,6 +39,8 @@ android {
             shrinkResources false
         }
     }
+
+
 }
 
 dependencies {
@@ -78,6 +85,7 @@ dependencies {
 
     // Add the Firebase Crashlytics SDK.
     implementation 'com.google.firebase:firebase-crashlytics:17.0.0'
+
 
 }
 apply plugin: 'com.google.gms.google-services'
